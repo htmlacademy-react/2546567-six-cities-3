@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Любовь Коничняк](https://up.htmlacademy.ru/react-individual/3/user/2546567).
-* Наставник: `Евгений Лепешкин`.
+* Наставник: [Василий Петрухин](https://up.htmlacademy.ru/react-individual/3/user/1528403).
 
 ---
 
