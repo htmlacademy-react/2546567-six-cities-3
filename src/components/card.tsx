@@ -1,33 +1,53 @@
-import { getRaiting } from '../utils/mocks';
+import { Link } from 'react-router-dom';
+import { getRaiting } from '../mocks/mocks';
 import { CardType } from '../utils/type';
+import { AppRoute } from './const';
 
 type CardPropsType = {
   card: CardType;
+  handleHover?: (card?: CardType) => void;
 };
 
-function Card({ card }: CardPropsType): JSX.Element {
+function Card({ card, handleHover }: CardPropsType): JSX.Element {
+  const handleMouseOn = () => {
+    if (handleHover) {
+      handleHover(card);
+    }
+  };
+
+  const handleMouseOff = () => {
+    if (handleHover) {
+      handleHover();
+    }
+  };
+
   return (
-    <article className="cities__card place-card" key={card.id}>
+    <article
+      className="cities__card place-card"
+      onMouseEnter={handleMouseOn}
+      onMouseLeave={handleMouseOff}
+      key={card.id}
+    >
       {card.premiumMark === true && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img
-            className="place-card__image"
-            src={card.img}
-            width="260"
-            height="200"
-            alt="Place image"
-          />
-        </a>
+        <img
+          className="place-card__image"
+          src={card.img}
+          width="260"
+          height="200"
+          alt="Place image"
+        />
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{card.priceValue}</b>
+            <b className="place-card__price-value">
+              &euro;{card.description.priceValue}
+            </b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
@@ -42,14 +62,14 @@ function Card({ card }: CardPropsType): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: getRaiting(card.rating) }}></span>
+            <span style={{ width: getRaiting(card.description.rating) }}></span>
             <span className="visually-hidden">Raiting</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{card.placeCardName}</a>
+          <Link to={`${AppRoute.Offers}/${card.id}`}>{card.placeCardName}</Link>
         </h2>
-        <p className="place-card__type">{card.placeCardType}</p>
+        <p className="place-card__type">{card.description.placeCardType}</p>
       </div>
     </article>
   );

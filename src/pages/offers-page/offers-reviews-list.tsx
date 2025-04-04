@@ -1,4 +1,4 @@
-function OffersReviewsList(): JSX.Element {
+function OfferReviewsList(): JSX.Element {
   return (
     <ul className="reviews__list">
       <li className="reviews__item">
@@ -34,4 +34,4 @@ function OffersReviewsList(): JSX.Element {
     </ul>
   );
 }
-export default OffersReviewsList;
+export default OfferReviewsList;

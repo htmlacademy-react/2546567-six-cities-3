@@ -1,15 +1,11 @@
-.wrapper-404 {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.wrapper-title {
+.reviews__subtitle {
+    margin-left: 60px;
     font-family: 'Roboto', Arial, sans-serif;
-    color: rgb(255, 60, 0);
-    font-size: 74px;
+    color: #25495780;
+    font-size: 27px;
     font-weight: 700;
     font-style: italic;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+
 }
