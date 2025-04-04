@@ -3,8 +3,7 @@ import Card from '../../components/card';
 import { CardType } from '../../utils/type';
 
 function CardList({ cards }: { cards: CardType[] }): JSX.Element {
-  //eslint-disable-next-line
-  const [activeCard, setActiveCards] = useState<CardType | null>(null);
+  const [, setActiveCards] = useState<CardType | null>(null);
   const handleHover = (card?: CardType) => {
     setActiveCards(card || null);
   };
