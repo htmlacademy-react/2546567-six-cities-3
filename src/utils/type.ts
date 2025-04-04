@@ -1,21 +1,21 @@
-import { AppRoute } from "../components/const";
+import { AppRoute } from '../components/const';
 
 export type TLocationCoordinates = {
-  latitude: number,
-  longitude: number,
-  zoom: number,
+  latitude: number;
+  longitude: number;
+  zoom: number;
 };
 export type TCity = {
-  name: string,
-  location: TLocationCoordinates,
-}
+  name: string;
+  location: TLocationCoordinates;
+};
 export type Tdescription = {
   priceValue: number;
   rating: number;
   placeCardType: string;
-  maxAdults: number,
-  bedrooms: number,
-}
+  maxAdults: number;
+  bedrooms: number;
+};
 
 export type CardType = {
   id: number;
@@ -25,8 +25,8 @@ export type CardType = {
   premiumMark: boolean;
   placeCardName: string;
   isFavorite: boolean;
-  city: TCity,
-  goods: string[],
+  city: TCity;
+  goods: string[];
 };
 
 export const getLayoutState = (pathname: AppRoute) => {
@@ -44,5 +44,5 @@ export const getLayoutState = (pathname: AppRoute) => {
   } else if (pathname === AppRoute.Favorite) {
     shouldRenderFooter = true;
   }
-  return { rootClassName, linkClassName, shouldRenderUser, shouldRenderFooter }
+  return { rootClassName, linkClassName, shouldRenderUser, shouldRenderFooter };
 };

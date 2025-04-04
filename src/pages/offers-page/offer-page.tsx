@@ -4,16 +4,18 @@ import OfferGallery from '../favorite-page/offer-gallery';
 import OfferReviewsList from './offers-reviews-list';
 import { CardType } from '../../utils/type';
 import OfferHost from './offer-host';
-import OfferDescription from './offer- description';
+import OfferDescription from './offer-description';
 import { IS_AUTH } from '../../mocks/mocks';
 import OfferReviews from '../../components/offer-reviews';
 
 function OfferPage({ cards }: { cards: CardType[] }) {
-  const params = useParams()
-  const currentCard = cards.find((item: CardType) => item.id === Number(params.id));
+  const params = useParams();
+  const currentCard = cards.find(
+    (item: CardType) => item.id === Number(params.id)
+  );
 
   if (!currentCard) {
-    return null
+    return null;
   }
 
   return (
@@ -58,12 +60,12 @@ function OfferPage({ cards }: { cards: CardType[] }) {
                 Reviews &middot; <span className="reviews__amount">1</span>
               </h2>
               <OfferReviewsList />
-              {IS_AUTH &&
-                <OfferReviews />
-              }
-              {!IS_AUTH &&
-                <p className="reviews__subtitle">...Пожалуйста, авторизуйтесь...</p>
-              }
+              {IS_AUTH && <OfferReviews />}
+              {!IS_AUTH && (
+                <p className="reviews__subtitle">
+                  ...Пожалуйста, авторизуйтесь...
+                </p>
+              )}
             </section>
           </div>
         </div>
@@ -85,4 +87,4 @@ function OfferPage({ cards }: { cards: CardType[] }) {
   );
 }
 
-export default OfferPage
+export default OfferPage;

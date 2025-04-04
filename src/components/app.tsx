@@ -10,20 +10,20 @@ import Layout from './layout/layout';
 import { CardType } from '../utils/type';
 import OfferPage from '../pages/offers-page/offer-page';
 
-
 type AppProps = {
   offersCount: number;
   cards: CardType[];
 };
 
 function App({ offersCount, cards }: AppProps) {
-
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Root} element={<Layout />}>
-          <Route index element={<MainPage offersCount={offersCount} cards={cards} />} />
+          <Route
+            index
+            element={<MainPage offersCount={offersCount} cards={cards} />}
+          />
           <Route
             path={AppRoute.Favorite}
             element={
@@ -32,7 +32,10 @@ function App({ offersCount, cards }: AppProps) {
               </PrivateRoute>
             }
           />
-          <Route path={`${AppRoute.Offers}/:id`} element={<OfferPage cards={cards} />} />
+          <Route
+            path={`${AppRoute.Offers}/:id`}
+            element={<OfferPage cards={cards} />}
+          />
         </Route>
         <Route path={AppRoute.Login} element={<LoginPage />} />
         <Route path="*" element={<NotFoundPage />} />

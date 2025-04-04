@@ -13,20 +13,21 @@ function Card({ card, handleHover }: CardPropsType): JSX.Element {
     if (handleHover) {
       handleHover(card);
     }
-  }
+  };
 
   const handleMouseOff = () => {
     if (handleHover) {
       handleHover();
     }
-  }
+  };
 
   return (
-
-    <article className="cities__card place-card"
+    <article
+      className="cities__card place-card"
       onMouseEnter={handleMouseOn}
       onMouseLeave={handleMouseOff}
-      key={card.id}>
+      key={card.id}
+    >
       {card.premiumMark === true && (
         <div className="place-card__mark">
           <span>Premium</span>
@@ -44,7 +45,9 @@ function Card({ card, handleHover }: CardPropsType): JSX.Element {
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{card.description.priceValue}</b>
+            <b className="place-card__price-value">
+              &euro;{card.description.priceValue}
+            </b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
@@ -64,9 +67,7 @@ function Card({ card, handleHover }: CardPropsType): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offers}/${card.id}`}>
-            {card.placeCardName}
-          </Link>
+          <Link to={`${AppRoute.Offers}/${card.id}`}>{card.placeCardName}</Link>
         </h2>
         <p className="place-card__type">{card.description.placeCardType}</p>
       </div>

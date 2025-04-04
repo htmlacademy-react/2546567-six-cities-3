@@ -1,9 +1,10 @@
-import { Tdescription } from "../../utils/type";
+import { Tdescription } from '../../utils/type';
 
-
-function OfferDescription({ description }: { description: Tdescription }): JSX.Element {
-
-
+function OfferDescription({
+  description,
+}: {
+  description: Tdescription;
+}): JSX.Element {
   return (
     <>
       <div className="offer__name-wrapper">

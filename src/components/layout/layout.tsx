@@ -1,8 +1,8 @@
-import { Outlet, useLocation } from "react-router-dom";
-import { AppRoute } from "../const";
-import { getLayoutState } from "../../utils/type";
+import { Outlet, useLocation } from 'react-router-dom';
+import { AppRoute } from '../const';
+import { getLayoutState } from '../../utils/type';
 
-import Header from "../header";
+import Header from '../header';
 
 export default function Layout() {
   const { pathname } = useLocation();

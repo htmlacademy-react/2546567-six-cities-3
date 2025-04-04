@@ -6,11 +6,7 @@ export const CARDS: CardType[] = [
   {
     id: 1,
     img: 'img/apartment-01.jpg',
-    pictures: [
-      'img/room.jp',
-      'img/apartment-01.jpg',
-      'img/apartment-03.jpg',
-    ],
+    pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
     description: {
       priceValue: 120,
       rating: 4,
@@ -36,16 +32,13 @@ export const CARDS: CardType[] = [
       'Heating',
       'Coffee machine',
       'Baby seat',
-    ]
+    ],
   },
 
   {
     id: 2,
     img: 'img/apartment-01.jpg',
-    pictures: [
-      'img/room.jp',
-      'img/studio-01.jpg'
-    ],
+    pictures: ['img/room.jpg', 'img/studio-01.jpg'],
     description: {
       priceValue: 80,
       rating: 4,
@@ -60,25 +53,16 @@ export const CARDS: CardType[] = [
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
-        zoom: 5
+        zoom: 5,
       },
     },
     premiumMark: false,
-    goods: [
-      'Wi-Fi',
-      'Washing machine',
-      'Towels',
-      'Heating',
-
-    ]
+    goods: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating'],
   },
   {
     id: 3,
     img: 'img/apartment-02.jpg',
-    pictures: [
-      'img/room.jp',
-      'img/apartment-01.jpg'
-    ],
+    pictures: ['img/room.jpg', 'img/apartment-01.jpg'],
     description: {
       priceValue: 132,
       rating: 4,
@@ -93,26 +77,16 @@ export const CARDS: CardType[] = [
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
-        zoom: 5
+        zoom: 5,
       },
     },
     premiumMark: false,
-    goods: [
-      'Wi-Fi',
-      'Towels',
-      'Heating',
-      'Coffee machine',
-      'Baby seat',
-    ]
+    goods: ['Wi-Fi', 'Towels', 'Heating', 'Coffee machine', 'Baby seat'],
   },
   {
     id: 4,
     img: 'img/apartment-03.jpg',
-    pictures: [
-      'img/room.jp',
-      'img/apartment-01.jpg',
-      'img/apartment-03.jpg',
-    ],
+    pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
     description: {
       priceValue: 180,
       rating: 5,
@@ -127,7 +101,7 @@ export const CARDS: CardType[] = [
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
-        zoom: 5
+        zoom: 5,
       },
     },
     premiumMark: true,
@@ -140,15 +114,12 @@ export const CARDS: CardType[] = [
       'Baby seat',
       'Kitchen',
       'Dishwasher',
-    ]
+    ],
   },
   {
     id: 5,
     img: 'img/room.jpg',
-    pictures: [
-      'img/room.jp',
-      'img/studio-01.jpg'
-    ],
+    pictures: ['img/room.jpg', 'img/studio-01.jpg'],
     description: {
       priceValue: 90,
       rating: 4,
@@ -163,7 +134,7 @@ export const CARDS: CardType[] = [
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
-        zoom: 5
+        zoom: 5,
       },
     },
     premiumMark: false,
@@ -177,17 +148,13 @@ export const CARDS: CardType[] = [
       'Dishwasher',
       'Cabel TV',
       'Fridge',
-    ]
+    ],
   },
 
   {
     id: 6,
     img: 'img/room.jpg',
-    pictures: [
-      'img/room.jp',
-      'img/apartment-01.jpg',
-      'img/apartment-02.jpg',
-    ],
+    pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg'],
     description: {
       priceValue: 100,
       rating: 4,
@@ -202,7 +169,7 @@ export const CARDS: CardType[] = [
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
-        zoom: 5
+        zoom: 5,
       },
     },
     premiumMark: false,
@@ -215,7 +182,7 @@ export const CARDS: CardType[] = [
       'Kitchen',
       'Dishwasher',
       'Cabel TV',
-    ]
+    ],
   },
 ];
 
