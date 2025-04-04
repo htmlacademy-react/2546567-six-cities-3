@@ -1,12 +1,10 @@
-import HeaderMain from '../../components/header-main';
-import { CARDS } from '../../utils/mocks';
+
+import { CardType } from '../../utils/type';
 import FavoriteCard from './favorite-card';
 
-function FavoritePage() {
+function FavoritePage({ cards }: { cards: CardType[] }) {
   return (
-    <div className="page">
-      <HeaderMain />
-
+    <>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
@@ -21,8 +19,8 @@ function FavoritePage() {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <FavoriteCard card={CARDS[1]} />
-                  <FavoriteCard card={CARDS[3]} />
+                  <FavoriteCard card={cards[1]} />
+                  <FavoriteCard card={cards[3]} />
                 </div>
               </li>
 
@@ -35,7 +33,7 @@ function FavoritePage() {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <FavoriteCard card={CARDS[4]} />
+                  <FavoriteCard card={cards[4]} />
                 </div>
               </li>
             </ul>
@@ -44,16 +42,10 @@ function FavoritePage() {
       </main>
       <footer className="footer container">
         <a className="footer__logo-link" href="main.html">
-          <img
-            className="footer__logo"
-            src="img/logo.svg"
-            alt="6 cities logo"
-            width="64"
-            height="33"
-          />
+          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
         </a>
       </footer>
-    </div>
+    </>
   );
 }
 

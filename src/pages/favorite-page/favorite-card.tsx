@@ -1,4 +1,4 @@
-import { getRaiting } from '../../utils/mocks';
+import { getRaiting } from '../../mocks/mocks';
 import { CardType } from '../../utils/type';
 
 type FavoriteCardPropsType = {
@@ -27,7 +27,7 @@ function FavoriteCard({ card }: FavoriteCardPropsType): JSX.Element {
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{card.priceValue}</b>
+            <b className="place-card__price-value">&euro;{card.description.priceValue}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
@@ -42,14 +42,14 @@ function FavoriteCard({ card }: FavoriteCardPropsType): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: getRaiting(card.rating) }}></span>
+            <span style={{ width: getRaiting(card.description.rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <a href="#">{card.placeCardName}</a>
         </h2>
-        <p className="place-card__type">{card.placeCardType}</p>
+        <p className="place-card__type">{card.description.placeCardType}</p>
       </div>
     </article>
   );

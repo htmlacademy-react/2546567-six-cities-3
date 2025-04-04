@@ -1,4 +1,4 @@
-function OffersDescription(): JSX.Element {
+function OfferHost(): JSX.Element {
   return (
 
     <div className="offer__description">
@@ -15,4 +15,4 @@ function OffersDescription(): JSX.Element {
     </div>
   );
 }
-export default OffersDescription;
+export default OfferHost;

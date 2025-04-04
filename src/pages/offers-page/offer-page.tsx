@@ -1,29 +1,35 @@
+import { useParams } from 'react-router-dom';
 import Card from '../../components/card';
-import HeaderMain from '../../components/header-main';
-import OffersReviewsForm from '../../components/offers-reviews-form';
+import OfferGallery from '../favorite-page/offer-gallery';
+import OfferReviewsList from './offers-reviews-list';
+import { CardType } from '../../utils/type';
+import OfferHost from './offer-host';
+import OfferDescription from './offer- description';
+import { IS_AUTH } from '../../mocks/mocks';
+import OfferReviews from '../../components/offer-reviews';
 
-import { CARDS, OFFERS } from '../../utils/mocks';
-import OffersGallery from '../favorite-page/offers-gallery';
-import OffersDescription from './offers-description';
-import OffersName from './offers-name';
-import OffersReviewsList from './offers-reviews-list';
+function OfferPage({ cards }: { cards: CardType[] }) {
+  const params = useParams()
+  const currentCard = cards.find((item: CardType) => item.id === Number(params.id));
 
-export const OffersPage = () => (
-  <div className="page">
-    <HeaderMain />
+  if (!currentCard) {
+    return null
+  }
+
+  return (
     <main className="page__main page__main--offer">
       <section className="offer">
-        <OffersGallery />
+        <OfferGallery pictures={currentCard.pictures} />
         <div className="offer__container container">
           <div className="offer__wrapper">
             <div className="offer__mark">
               <span>Premium</span>
             </div>
-            <OffersName />
+            <OfferDescription description={currentCard.description} />
             <div className="offer__inside">
               <h2 className="offer__inside-title">What&apos;s inside</h2>
               <ul className="offer__inside-list">
-                {OFFERS.map((offer: string) => (
+                {currentCard.goods.map((offer: string) => (
                   <li className="offer__inside-item" key={offer}>
                     {offer}
                   </li>
@@ -45,14 +51,19 @@ export const OffersPage = () => (
                 <span className="offer__user-name">Angelina</span>
                 <span className="offer__user-status">Pro</span>
               </div>
-              <OffersDescription />
+              <OfferHost />
             </div>
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
                 Reviews &middot; <span className="reviews__amount">1</span>
               </h2>
-              <OffersReviewsList />
-              <OffersReviewsForm />
+              <OfferReviewsList />
+              {IS_AUTH &&
+                <OfferReviews />
+              }
+              {!IS_AUTH &&
+                <p className="reviews__subtitle">...Пожалуйста, авторизуйтесь...</p>
+              }
             </section>
           </div>
         </div>
@@ -64,12 +75,14 @@ export const OffersPage = () => (
             Other places in the neighbourhood
           </h2>
           <div className="near-places__list places__list">
-            <Card card={CARDS[0]} />
-            <Card card={CARDS[2]} />
-            <Card card={CARDS[4]} />
+            <Card card={cards[0]} />
+            <Card card={cards[2]} />
+            <Card card={cards[4]} />
           </div>
         </section>
       </div>
     </main>
-  </div>
-);
+  );
+}
+
+export default OfferPage

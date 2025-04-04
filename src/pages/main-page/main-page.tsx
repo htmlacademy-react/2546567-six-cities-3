@@ -1,7 +1,8 @@
-import CartPlaceMain from './card-list-main';
-import HeaderMain from '../../components/header-main';
+
 import LocationListMain from '../../components/location-list-main';
 import MapMain from '../../components/map-main';
+import { CardType } from '../../utils/type';
+import CardList from './card-list';
 
 const placesOption: string[] = [
   'Popular',
@@ -12,13 +13,13 @@ const placesOption: string[] = [
 
 type MainPageProps = {
   offersCount: number;
+  cards: CardType[];
 };
 
-function MainPage({ offersCount }: MainPageProps): JSX.Element {
-  return (
-    <div className="page page--gray page--main">
-      <HeaderMain />
 
+function MainPage({ offersCount, cards }: MainPageProps): JSX.Element {
+  return (
+    <>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -47,7 +48,7 @@ function MainPage({ offersCount }: MainPageProps): JSX.Element {
                   ))}
                 </ul>
               </form>
-              <CartPlaceMain />
+              <CardList cards={cards} />
             </section>
             <div className="cities__right-section">
               <MapMain />
@@ -55,7 +56,7 @@ function MainPage({ offersCount }: MainPageProps): JSX.Element {
           </div>
         </div>
       </main>
-    </div>
+    </>
   );
 }
 

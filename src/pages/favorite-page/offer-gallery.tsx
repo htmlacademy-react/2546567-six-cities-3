@@ -1,4 +1,5 @@
-function OffersGallery(): JSX.Element {
+function OfferGallery({ pictures }: { pictures: string[] }): JSX.Element {
+
   return (
     <div className="offer__gallery-container container">
       <div className="offer__gallery">
@@ -49,4 +50,4 @@ function OffersGallery(): JSX.Element {
   );
 }
 
-export default OffersGallery;
+export default OfferGallery;
