@@ -1,5 +1,6 @@
 import LocationListMain from '../../components/location-list-main';
 import MapMain from '../../components/map-main';
+
 import { CardType } from '../../utils/type';
 import CardList from './card-list';
 
@@ -48,7 +49,11 @@ function MainPage({ offersCount, cards }: MainPageProps): JSX.Element {
             <CardList cards={cards} />
           </section>
           <div className="cities__right-section">
-            <MapMain />
+            <MapMain
+              city={cards[3].city}
+              offers={cards}
+              selectedPoint={cards[3]}
+            />
           </div>
         </div>
       </div>

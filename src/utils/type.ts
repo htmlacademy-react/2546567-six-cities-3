@@ -27,6 +27,7 @@ export type CardType = {
   isFavorite: boolean;
   city: TCity;
   goods: string[];
+  location: TLocationCoordinates;
 };
 
 export const getLayoutState = (pathname: AppRoute) => {
