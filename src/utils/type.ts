@@ -1,5 +1,10 @@
 import { AppRoute } from '../components/const';
 
+export type MainPageProps = {
+  offersCount: number;
+  cards: CardType[];
+};
+
 export type TLocationCoordinates = {
   latitude: number;
   longitude: number;
@@ -46,4 +51,11 @@ export const getLayoutState = (pathname: AppRoute) => {
     shouldRenderFooter = true;
   }
   return { rootClassName, linkClassName, shouldRenderUser, shouldRenderFooter };
+};
+
+export type RevierwType = {
+  id: number;
+  name: string;
+  raiting: number;
+  text: string;
 };

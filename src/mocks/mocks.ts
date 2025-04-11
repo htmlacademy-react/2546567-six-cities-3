@@ -1,11 +1,11 @@
-import { CardType } from '../utils/type';
+import { CardType, RevierwType } from '../utils/type';
 
 export const IS_AUTH = true;
 
 export const CARDS: CardType[] = [
   {
     id: 1,
-    img: 'img/apartment-03.jpg',
+    img: 'img/apartment-01.jpg',
     pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
     description: {
       priceValue: 180,
@@ -43,7 +43,7 @@ export const CARDS: CardType[] = [
   },
   {
     id: 2,
-    img: 'img/apartment-03.jpg',
+    img: 'img/apartment-02.jpg',
     pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
     description: {
       priceValue: 180,
@@ -100,7 +100,7 @@ export const CARDS: CardType[] = [
         zoom: 5,
       },
     },
-    premiumMark: true,
+    premiumMark: false,
     goods: [
       'Wi-Fi',
       'Washing machine',
@@ -119,7 +119,7 @@ export const CARDS: CardType[] = [
   },
   {
     id: 4,
-    img: 'img/apartment-03.jpg',
+    img: 'img/apartment-01.jpg',
     pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
     description: {
       priceValue: 180,
@@ -347,4 +347,19 @@ export const GOODS: string[] = [
   'Dishwasher',
   'Cabel TV',
   'Fridge',
+];
+
+export const REVIRWS_MOCK: RevierwType[] = [
+  {
+    id: 0,
+    name: 'Max',
+    raiting: 4,
+    text: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+  },
+  {
+    id: 1,
+    name: 'Jack',
+    raiting: 5,
+    text: 'everything is beautiful. I recommend',
+  },
 ];

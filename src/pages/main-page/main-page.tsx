@@ -1,20 +1,8 @@
+import { placesOption } from '../../components/const';
 import LocationListMain from '../../components/location-list-main';
-import MapMain from '../../components/map-main';
-
-import { CardType } from '../../utils/type';
+import MapComponent from '../../components/map-component';
+import { MainPageProps } from '../../utils/type';
 import CardList from './card-list';
-
-const placesOption: string[] = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-];
-
-type MainPageProps = {
-  offersCount: number;
-  cards: CardType[];
-};
 
 function MainPage({ offersCount, cards }: MainPageProps): JSX.Element {
   return (
@@ -49,10 +37,11 @@ function MainPage({ offersCount, cards }: MainPageProps): JSX.Element {
             <CardList cards={cards} />
           </section>
           <div className="cities__right-section">
-            <MapMain
+            <MapComponent
               city={cards[3].city}
               offers={cards}
               selectedPoint={cards[3]}
+              className={'cities__map'}
             />
           </div>
         </div>
