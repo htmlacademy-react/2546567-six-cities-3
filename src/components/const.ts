@@ -18,3 +18,6 @@ export const rating = [
   { value: 2, label: 'badly' },
   { value: 1, label: 'terribly' },
 ];
+
+export const URL_MARKER_DEFAULT = 'img/pin.svg';
+export const URL_MARCER_ACTIVE = 'img/pin-active.svg';

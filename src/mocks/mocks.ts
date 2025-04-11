@@ -5,6 +5,158 @@ export const IS_AUTH = true;
 export const CARDS: CardType[] = [
   {
     id: 1,
+    img: 'img/apartment-03.jpg',
+    pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
+    description: {
+      priceValue: 180,
+      rating: 5,
+      maxAdults: 2,
+      placeCardType: 'Apartment',
+      bedrooms: 3,
+    },
+    placeCardName: 'Nice, cozy, warm big bed apartment',
+    isFavorite: true,
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3676,
+        longitude: 4.9041,
+        zoom: 5,
+      },
+    },
+    premiumMark: true,
+    goods: [
+      'Wi-Fi',
+      'Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+    ],
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 5,
+    },
+  },
+  {
+    id: 2,
+    img: 'img/apartment-03.jpg',
+    pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
+    description: {
+      priceValue: 180,
+      rating: 5,
+      maxAdults: 2,
+      placeCardType: 'Apartment',
+      bedrooms: 3,
+    },
+    placeCardName: 'Nice, cozy, warm big bed apartment',
+    isFavorite: true,
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3676,
+        longitude: 4.9041,
+        zoom: 5,
+      },
+    },
+    premiumMark: true,
+    goods: [
+      'Wi-Fi',
+      'Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+    ],
+    location: {
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+      zoom: 5,
+    },
+  },
+  {
+    id: 3,
+    img: 'img/apartment-03.jpg',
+    pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
+    description: {
+      priceValue: 180,
+      rating: 5,
+      maxAdults: 2,
+      placeCardType: 'Apartment',
+      bedrooms: 3,
+    },
+    placeCardName: 'Nice, cozy, warm big bed apartment',
+    isFavorite: true,
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3676,
+        longitude: 4.9041,
+        zoom: 5,
+      },
+    },
+    premiumMark: true,
+    goods: [
+      'Wi-Fi',
+      'Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+    ],
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 5,
+    },
+  },
+  {
+    id: 4,
+    img: 'img/apartment-03.jpg',
+    pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
+    description: {
+      priceValue: 180,
+      rating: 5,
+      maxAdults: 2,
+      placeCardType: 'Apartment',
+      bedrooms: 3,
+    },
+    placeCardName: 'Nice, cozy, warm big bed apartment',
+    isFavorite: true,
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3676,
+        longitude: 4.9041,
+        zoom: 5,
+      },
+    },
+    premiumMark: true,
+    goods: [
+      'Wi-Fi',
+      'Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+    ],
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 5,
+    },
+  },
+  {
+    id: 5,
     img: 'img/apartment-01.jpg',
     pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
     description: {
@@ -33,10 +185,15 @@ export const CARDS: CardType[] = [
       'Coffee machine',
       'Baby seat',
     ],
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 5,
+    },
   },
 
   {
-    id: 2,
+    id: 6,
     img: 'img/apartment-01.jpg',
     pictures: ['img/room.jpg', 'img/studio-01.jpg'],
     description: {
@@ -58,9 +215,14 @@ export const CARDS: CardType[] = [
     },
     premiumMark: false,
     goods: ['Wi-Fi', 'Washing machine', 'Towels', 'Heating'],
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 5,
+    },
   },
   {
-    id: 3,
+    id: 7,
     img: 'img/apartment-02.jpg',
     pictures: ['img/room.jpg', 'img/apartment-01.jpg'],
     description: {
@@ -82,42 +244,15 @@ export const CARDS: CardType[] = [
     },
     premiumMark: false,
     goods: ['Wi-Fi', 'Towels', 'Heating', 'Coffee machine', 'Baby seat'],
-  },
-  {
-    id: 4,
-    img: 'img/apartment-03.jpg',
-    pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-03.jpg'],
-    description: {
-      priceValue: 180,
-      rating: 5,
-      maxAdults: 2,
-      placeCardType: 'Apartment',
-      bedrooms: 3,
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 0,
     },
-    placeCardName: 'Nice, cozy, warm big bed apartment',
-    isFavorite: true,
-    city: {
-      name: 'Amsterdam',
-      location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
-        zoom: 5,
-      },
-    },
-    premiumMark: true,
-    goods: [
-      'Wi-Fi',
-      'Washing machine',
-      'Towels',
-      'Heating',
-      'Coffee machine',
-      'Baby seat',
-      'Kitchen',
-      'Dishwasher',
-    ],
   },
+
   {
-    id: 5,
+    id: 8,
     img: 'img/room.jpg',
     pictures: ['img/room.jpg', 'img/studio-01.jpg'],
     description: {
@@ -149,10 +284,15 @@ export const CARDS: CardType[] = [
       'Cabel TV',
       'Fridge',
     ],
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 0,
+    },
   },
 
   {
-    id: 6,
+    id: 9,
     img: 'img/room.jpg',
     pictures: ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg'],
     description: {
@@ -183,6 +323,11 @@ export const CARDS: CardType[] = [
       'Dishwasher',
       'Cabel TV',
     ],
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 0,
+    },
   },
 ];
 
