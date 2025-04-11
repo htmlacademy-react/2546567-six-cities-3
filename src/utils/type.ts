@@ -14,7 +14,7 @@ export type TCity = {
   name: string;
   location: TLocationCoordinates;
 };
-export type Tdescription = {
+export type TDescription = {
   priceValue: number;
   rating: number;
   placeCardType: string;
@@ -26,7 +26,7 @@ export type CardType = {
   id: number;
   img: string;
   pictures: string[];
-  description: Tdescription;
+  description: TDescription;
   premiumMark: boolean;
   placeCardName: string;
   isFavorite: boolean;
@@ -53,9 +53,9 @@ export const getLayoutState = (pathname: AppRoute) => {
   return { rootClassName, linkClassName, shouldRenderUser, shouldRenderFooter };
 };
 
-export type RevierwType = {
+export type ReviewType = {
   id: number;
   name: string;
-  raiting: number;
+  rating: number;
   text: string;
 };

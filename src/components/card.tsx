@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { getRaiting } from '../mocks/mocks';
+import { getRating } from '../mocks/mocks';
 import { CardType } from '../utils/type';
 import { AppRoute } from './const';
 
@@ -62,8 +62,8 @@ function Card({ card, handleHover }: CardPropsType): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: getRaiting(card.description.rating) }}></span>
-            <span className="visually-hidden">Raiting</span>
+            <span style={{ width: getRating(card.description.rating) }}></span>
+            <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">

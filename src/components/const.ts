@@ -1,7 +1,7 @@
 export enum AppRoute {
   Root = '/',
   Login = '/login',
-  Favorite = '/favorire',
+  Favorite = '/favorite',
   Offers = '/offers',
 }
 
@@ -20,7 +20,7 @@ export const rating = [
 ];
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
-export const URL_MARCER_ACTIVE = 'img/pin-active.svg';
+export const URL_MARKER_ACTIVE = 'img/pin-active.svg';
 
 export const placesOption: string[] = [
   'Popular',

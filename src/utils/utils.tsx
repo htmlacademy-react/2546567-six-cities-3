@@ -2,7 +2,7 @@ import { CardType } from './type';
 
 const MAX_NEAR_OFFERS = 3;
 
-function getNaerOffers(card: CardType, cards: CardType[]) {
+function getNearOffers(card: CardType, cards: CardType[]) {
   const filteredCards = cards.filter((item) => {
     if (item.city.name === card.city.name) {
       return item;
@@ -11,4 +11,4 @@ function getNaerOffers(card: CardType, cards: CardType[]) {
   return filteredCards.slice(0, MAX_NEAR_OFFERS);
 }
 
-export default getNaerOffers;
+export default getNearOffers;

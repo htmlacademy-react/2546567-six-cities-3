@@ -1,4 +1,4 @@
-import { CardType, RevierwType } from '../utils/type';
+import { CardType, ReviewType as ReviewType } from '../utils/type';
 
 export const IS_AUTH = true;
 
@@ -281,7 +281,7 @@ export const CARDS: CardType[] = [
       'Baby seat',
       'Kitchen',
       'Dishwasher',
-      'Cabel TV',
+      'Cable TV',
       'Fridge',
     ],
     location: {
@@ -321,7 +321,7 @@ export const CARDS: CardType[] = [
       'Baby seat',
       'Kitchen',
       'Dishwasher',
-      'Cabel TV',
+      'Cable TV',
     ],
     location: {
       latitude: 0,
@@ -331,7 +331,7 @@ export const CARDS: CardType[] = [
   },
 ];
 
-export const getRaiting = (starsCount: number) => {
+export const getRating = (starsCount: number) => {
   const percents = starsCount * 20;
   return `${percents}%`;
 };
@@ -345,21 +345,21 @@ export const GOODS: string[] = [
   'Baby seat',
   'Kitchen',
   'Dishwasher',
-  'Cabel TV',
+  'Cable TV',
   'Fridge',
 ];
 
-export const REVIRWS_MOCK: RevierwType[] = [
+export const REVIEWS_MOCK: ReviewType[] = [
   {
     id: 0,
     name: 'Max',
-    raiting: 4,
+    rating: 4,
     text: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
   },
   {
     id: 1,
     name: 'Jack',
-    raiting: 5,
+    rating: 5,
     text: 'everything is beautiful. I recommend',
   },
 ];
