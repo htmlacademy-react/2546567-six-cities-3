@@ -5,8 +5,10 @@ import OfferReviewsList from './offers-reviews-list';
 import { CardType } from '../../utils/type';
 import OfferHost from './offer-host';
 import OfferDescription from './offer-description';
-import { IS_AUTH } from '../../mocks/mocks';
+import { IS_AUTH, REVIRWS_MOCK } from '../../mocks/mocks';
 import OfferReviews from '../../components/offer-reviews';
+import MapComponent from '../../components/map-component';
+import getNaerOffers from '../../utils/utils';
 
 function OfferPage({ cards }: { cards: CardType[] }) {
   const params = useParams();
@@ -17,6 +19,8 @@ function OfferPage({ cards }: { cards: CardType[] }) {
   if (!currentCard) {
     return null;
   }
+
+  const nearCards = getNaerOffers(currentCard, cards);
 
   return (
     <main className="page__main page__main--offer">
@@ -57,7 +61,8 @@ function OfferPage({ cards }: { cards: CardType[] }) {
             </div>
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
-                Reviews &middot; <span className="reviews__amount">1</span>
+                Reviews &middot;{' '}
+                <span className="reviews__amount">{REVIRWS_MOCK.length}</span>
               </h2>
               <OfferReviewsList />
               {IS_AUTH && <OfferReviews />}
@@ -69,7 +74,12 @@ function OfferPage({ cards }: { cards: CardType[] }) {
             </section>
           </div>
         </div>
-        <section className="offer__map map"></section>
+        <MapComponent
+          className={'offer__map'}
+          city={currentCard.city}
+          offers={nearCards}
+          selectedPoint={currentCard}
+        />
       </section>
       <div className="container">
         <section className="near-places places">
@@ -77,9 +87,9 @@ function OfferPage({ cards }: { cards: CardType[] }) {
             Other places in the neighbourhood
           </h2>
           <div className="near-places__list places__list">
-            <Card card={cards[0]} />
-            <Card card={cards[2]} />
-            <Card card={cards[4]} />
+            {nearCards.map((item) => (
+              <Card key={item.id} card={item} />
+            ))}
           </div>
         </section>
       </div>

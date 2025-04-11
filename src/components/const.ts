@@ -21,3 +21,10 @@ export const rating = [
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 export const URL_MARCER_ACTIVE = 'img/pin-active.svg';
+
+export const placesOption: string[] = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+];

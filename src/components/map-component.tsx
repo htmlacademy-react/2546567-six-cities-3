@@ -6,9 +6,10 @@ import useMap from './use-map';
 import { URL_MARCER_ACTIVE, URL_MARKER_DEFAULT } from './const';
 
 type MapProps = {
+  className: string;
   city: TCity;
   offers: CardType[];
-  selectedPoint: CardType | undefined;
+  selectedPoint?: CardType | undefined;
 };
 
 const defaultCustomIcon = new Icon({
@@ -23,8 +24,8 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-function MapMain(props: MapProps): JSX.Element {
-  const { city, offers, selectedPoint } = props;
+function MapComponent(props: MapProps): JSX.Element {
+  const { className, city, offers, selectedPoint } = props;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -53,7 +54,7 @@ function MapMain(props: MapProps): JSX.Element {
     }
   }, [map, offers, selectedPoint]);
 
-  return <section className="cities__map map" ref={mapRef} />;
+  return <section className={`${className} map`} ref={mapRef} />;
 }
 
-export default MapMain;
+export default MapComponent;
