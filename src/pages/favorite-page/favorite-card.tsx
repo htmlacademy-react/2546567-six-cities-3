@@ -1,8 +1,8 @@
 import { getRating } from '../../mocks/mocks';
-import { CardType } from '../../utils/type';
+import { OffersType } from '../../utils/type';
 
 type FavoriteCardPropsType = {
-  card: CardType;
+  card: OffersType;
 };
 
 function FavoriteCard({ card }: FavoriteCardPropsType): JSX.Element {

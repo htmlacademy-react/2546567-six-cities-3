@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { getRating } from '../mocks/mocks';
-import { CardType } from '../utils/type';
+import { OffersType } from '../utils/type';
 import { AppRoute } from './const';
 
 type CardPropsType = {
-  card: CardType;
-  handleHover?: (card?: CardType) => void;
+  card: OffersType;
+  handleHover?: (card?: OffersType) => void;
 };
 
 function Card({ card, handleHover }: CardPropsType): JSX.Element {

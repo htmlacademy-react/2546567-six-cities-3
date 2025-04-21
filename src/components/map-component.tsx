@@ -1,18 +1,19 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { CardType, TCity } from '../utils/type';
+import { OffersType } from '../utils/type';
 import useMap from './use-map';
 import {
   URL_MARKER_ACTIVE as URL_MARKER_ACTIVE,
   URL_MARKER_DEFAULT,
 } from './const';
+import { TCity } from '../reducer/cities/citiesSlice';
 
 type MapProps = {
   className: string;
   city: TCity;
-  offers: CardType[];
-  selectedPoint?: CardType | undefined;
+  offers: OffersType[];
+  selectedPoint?: OffersType | undefined;
 };
 
 const defaultCustomIcon = new Icon({
@@ -27,8 +28,20 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-function MapComponent(props: MapProps): JSX.Element {
-  const { className, city, offers, selectedPoint } = props;
+type MapComponentProps = {
+  className: string;
+  city: TCity;
+  offers: OffersType[];
+  selectedPoint: OffersType;
+};
+
+function MapComponent({
+  className,
+  city,
+  offers,
+  selectedPoint,
+}: MapComponentProps): JSX.Element {
+  console.log(selectedPoint);
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -60,4 +73,4 @@ function MapComponent(props: MapProps): JSX.Element {
   return <section className={`${className} map`} ref={mapRef} />;
 }
 
-export default MapComponent;
+export default React.memo(MapComponent);

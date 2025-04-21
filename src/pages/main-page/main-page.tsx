@@ -1,10 +1,25 @@
+import { useSelector } from 'react-redux';
 import { placesOption } from '../../components/const';
 import LocationListMain from '../../components/location-list-main';
-import MapComponent from '../../components/map-component';
+import { OFFERS } from '../../mocks/mocks';
 import { MainPageProps } from '../../utils/type';
+import { RootState } from '../../reducer/reducer';
 import CardList from './card-list';
+import MapComponent from '../../components/map-component';
 
-function MainPage({ offersCount, cards }: MainPageProps): JSX.Element {
+function MainPage({ offersCount }: MainPageProps): JSX.Element {
+  const offers = useSelector((state: RootState) => state.cities.offers);
+
+  const currentCity = useSelector(
+    (state: RootState) => state.cities.currentCity
+  );
+
+  // const currentOffers = OFFERS.filter(
+  //   (card) => card.city.name === currentCity.name
+  // );
+
+  // const isEmpty = currentOffers.length === 0;
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -34,13 +49,13 @@ function MainPage({ offersCount, cards }: MainPageProps): JSX.Element {
                 ))}
               </ul>
             </form>
-            <CardList cards={cards} />
+            <CardList cards={offers} />
           </section>
           <div className="cities__right-section">
             <MapComponent
-              city={cards[3].city}
-              offers={cards}
-              selectedPoint={cards[3]}
+              city={currentCity}
+              offers={offers}
+              selectedPoint={offers[0]}
               className={'cities__map'}
             />
           </div>

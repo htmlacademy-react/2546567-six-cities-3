@@ -1,8 +1,9 @@
 import { AppRoute } from '../components/const';
+import { TCity } from '../reducer/cities/citiesSlice';
 
 export type MainPageProps = {
   offersCount: number;
-  cards: CardType[];
+  offers: OffersType[];
 };
 
 export type TLocationCoordinates = {
@@ -10,10 +11,7 @@ export type TLocationCoordinates = {
   longitude: number;
   zoom: number;
 };
-export type TCity = {
-  name: string;
-  location: TLocationCoordinates;
-};
+
 export type TDescription = {
   priceValue: number;
   rating: number;
@@ -22,7 +20,7 @@ export type TDescription = {
   bedrooms: number;
 };
 
-export type CardType = {
+export type OffersType = {
   id: number;
   img: string;
   pictures: string[];

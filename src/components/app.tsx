@@ -7,12 +7,12 @@ import { AppRoute, AuthorizationStatus } from './const';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import PrivateRoute from './private-route';
 import Layout from './layout/layout';
-import { CardType } from '../utils/type';
+import { OffersType } from '../utils/type';
 import OfferPage from '../pages/offers-page/offer-page';
 
 type AppProps = {
   offersCount: number;
-  cards: CardType[];
+  cards: OffersType[];
 };
 
 function App({ offersCount, cards }: AppProps) {

@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import Card from '../../components/card';
 import OfferGallery from '../favorite-page/offer-gallery';
 import OfferReviewsList from './offers-reviews-list';
-import { CardType } from '../../utils/type';
+import { OffersType } from '../../utils/type';
 import OfferHost from './offer-host';
 import OfferDescription from './offer-description';
 import { IS_AUTH, REVIEWS_MOCK } from '../../mocks/mocks';
@@ -10,10 +10,10 @@ import OfferReviews from '../../components/offer-reviews';
 import MapComponent from '../../components/map-component';
 import getNearOffers from '../../utils/utils';
 
-function OfferPage({ cards }: { cards: CardType[] }) {
+function OfferPage({ cards }: { cards: OffersType[] }) {
   const params = useParams();
   const currentCard = cards.find(
-    (item: CardType) => item.id === Number(params.id)
+    (item: OffersType) => item.id === Number(params.id)
   );
 
   if (!currentCard) {
