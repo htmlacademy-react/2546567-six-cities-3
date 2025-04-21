@@ -9,13 +9,6 @@ import {
 } from './const';
 import { TCity } from '../reducer/cities/citiesSlice';
 
-type MapProps = {
-  className: string;
-  city: TCity;
-  offers: OffersType[];
-  selectedPoint?: OffersType | undefined;
-};
-
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
@@ -32,7 +25,7 @@ type MapComponentProps = {
   className: string;
   city: TCity;
   offers: OffersType[];
-  selectedPoint: OffersType;
+  selectedPoint: OffersType | undefined;
 };
 
 function MapComponent({
@@ -41,8 +34,6 @@ function MapComponent({
   offers,
   selectedPoint,
 }: MapComponentProps): JSX.Element {
-  console.log(selectedPoint);
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -73,4 +64,4 @@ function MapComponent({
   return <section className={`${className} map`} ref={mapRef} />;
 }
 
-export default React.memo(MapComponent);
+export default MapComponent;

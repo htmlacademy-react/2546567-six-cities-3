@@ -32,9 +32,7 @@ const citiesSlice = createSlice({
   initialState,
   reducers: {
     setCurrentCity: (state, action: PayloadAction<TCity>) => {
-      const newCity = CITIES.find((city) => {
-        return city.name === (action.payload.name as CitiesEnum);
-      });
+      const newCity = CITIES.find((city) => city.name === action.payload.name);
 
       if (newCity) {
         state.currentCity = newCity;
@@ -44,7 +42,6 @@ const citiesSlice = createSlice({
   },
 });
 
-// Экспортируем все необходимое, включая fetchTodos, одним списком
 export const { setCurrentCity } = citiesSlice.actions;
 
 export default citiesSlice.reducer;

@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { placesOption } from '../../components/const';
 import LocationListMain from '../../components/location-list-main';
-import { OFFERS } from '../../mocks/mocks';
 import { MainPageProps } from '../../utils/type';
 import { RootState } from '../../reducer/reducer';
 import CardList from './card-list';
