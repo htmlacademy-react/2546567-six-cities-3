@@ -1,9 +1,9 @@
-import { Tdescription } from '../../utils/type';
+import { TDescription } from '../../utils/type';
 
 function OfferDescription({
   description,
 }: {
-  description: Tdescription;
+  description: TDescription;
 }): JSX.Element {
   return (
     <>

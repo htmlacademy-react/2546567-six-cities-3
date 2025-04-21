@@ -1,16 +1,13 @@
 import { useRef, useEffect } from 'react';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { CardType, TCity } from '../utils/type';
+import { OffersType } from '../utils/type';
 import useMap from './use-map';
-import { URL_MARCER_ACTIVE, URL_MARKER_DEFAULT } from './const';
-
-type MapProps = {
-  className: string;
-  city: TCity;
-  offers: CardType[];
-  selectedPoint?: CardType | undefined;
-};
+import {
+  URL_MARKER_ACTIVE as URL_MARKER_ACTIVE,
+  URL_MARKER_DEFAULT,
+} from './const';
+import { TCity } from '../reducer/cities/citiesSlice';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -19,14 +16,24 @@ const defaultCustomIcon = new Icon({
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl: URL_MARCER_ACTIVE,
+  iconUrl: URL_MARKER_ACTIVE,
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
 
-function MapComponent(props: MapProps): JSX.Element {
-  const { className, city, offers, selectedPoint } = props;
+type MapComponentProps = {
+  className: string;
+  city: TCity;
+  offers: OffersType[];
+  selectedPoint: OffersType | undefined;
+};
 
+function MapComponent({
+  className,
+  city,
+  offers,
+  selectedPoint,
+}: MapComponentProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 

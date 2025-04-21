@@ -2,25 +2,25 @@ import { useParams } from 'react-router-dom';
 import Card from '../../components/card';
 import OfferGallery from '../favorite-page/offer-gallery';
 import OfferReviewsList from './offers-reviews-list';
-import { CardType } from '../../utils/type';
+import { OffersType } from '../../utils/type';
 import OfferHost from './offer-host';
 import OfferDescription from './offer-description';
-import { IS_AUTH, REVIRWS_MOCK } from '../../mocks/mocks';
+import { IS_AUTH, REVIEWS_MOCK } from '../../mocks/mocks';
 import OfferReviews from '../../components/offer-reviews';
 import MapComponent from '../../components/map-component';
-import getNaerOffers from '../../utils/utils';
+import getNearOffers from '../../utils/utils';
 
-function OfferPage({ cards }: { cards: CardType[] }) {
+function OfferPage({ offers }: { offers: OffersType[] }) {
   const params = useParams();
-  const currentCard = cards.find(
-    (item: CardType) => item.id === Number(params.id)
+  const currentCard = offers.find(
+    (item: OffersType) => item.id === Number(params.id)
   );
 
   if (!currentCard) {
     return null;
   }
 
-  const nearCards = getNaerOffers(currentCard, cards);
+  const nearCards = getNearOffers(currentCard, offers);
 
   return (
     <main className="page__main page__main--offer">
@@ -62,7 +62,7 @@ function OfferPage({ cards }: { cards: CardType[] }) {
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
                 Reviews &middot;{' '}
-                <span className="reviews__amount">{REVIRWS_MOCK.length}</span>
+                <span className="reviews__amount">{REVIEWS_MOCK.length}</span>
               </h2>
               <OfferReviewsList />
               {IS_AUTH && <OfferReviews />}
@@ -84,7 +84,7 @@ function OfferPage({ cards }: { cards: CardType[] }) {
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">
-            Other places in the neighbourhood
+            Other places in the neighborhood
           </h2>
           <div className="near-places__list places__list">
             {nearCards.map((item) => (

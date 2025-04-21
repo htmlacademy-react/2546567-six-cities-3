@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Card from '../../components/card';
-import { CardType } from '../../utils/type';
+import { OffersType } from '../../utils/type';
 
-function CardList({ cards }: { cards: CardType[] }): JSX.Element {
-  const [, setActiveCards] = useState<CardType | null>(null);
-  const handleHover = (card?: CardType) => {
+function CardList({ cards }: { cards: OffersType[] }): JSX.Element {
+  const [, setActiveCards] = useState<OffersType | null>(null);
+  const handleHover = (card?: OffersType) => {
     setActiveCards(card || null);
   };
 

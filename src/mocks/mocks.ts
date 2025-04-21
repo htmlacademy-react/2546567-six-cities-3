@@ -1,8 +1,9 @@
-import { CardType, RevierwType } from '../utils/type';
+import { CitiesEnum } from '../components/const';
+import { OffersType, ReviewType as ReviewType } from '../utils/type';
 
 export const IS_AUTH = true;
 
-export const CARDS: CardType[] = [
+export const OFFERS: OffersType[] = [
   {
     id: 1,
     img: 'img/apartment-01.jpg',
@@ -17,7 +18,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Nice, cozy, warm big bed apartment',
     isFavorite: true,
     city: {
-      name: 'Amsterdam',
+      name: CitiesEnum.Amsterdam,
       location: {
         latitude: 52.3676,
         longitude: 4.9041,
@@ -55,7 +56,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Nice, cozy, warm big bed apartment',
     isFavorite: true,
     city: {
-      name: 'Amsterdam',
+      name: CitiesEnum.Amsterdam,
       location: {
         latitude: 52.3676,
         longitude: 4.9041,
@@ -93,7 +94,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Nice, cozy, warm big bed apartment',
     isFavorite: true,
     city: {
-      name: 'Amsterdam',
+      name: CitiesEnum.Amsterdam,
       location: {
         latitude: 52.3676,
         longitude: 4.9041,
@@ -131,7 +132,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Nice, cozy, warm big bed apartment',
     isFavorite: true,
     city: {
-      name: 'Amsterdam',
+      name: CitiesEnum.Amsterdam,
       location: {
         latitude: 52.3676,
         longitude: 4.9041,
@@ -169,7 +170,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Beautiful &amp; luxurious apartment at great location',
     isFavorite: false,
     city: {
-      name: 'Paris',
+      name: CitiesEnum.Paris,
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -186,9 +187,9 @@ export const CARDS: CardType[] = [
       'Baby seat',
     ],
     location: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 5,
+      latitude: 48.8566,
+      longitude: 2.3522,
+      zoom: 12,
     },
   },
 
@@ -206,7 +207,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Wood and stone place',
     isFavorite: true,
     city: {
-      name: 'Cologne',
+      name: CitiesEnum.Cologne,
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -235,7 +236,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Canal View Prinsengracht',
     isFavorite: false,
     city: {
-      name: 'Brussels',
+      name: CitiesEnum.Brussels,
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -265,7 +266,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Wood and stone place',
     isFavorite: true,
     city: {
-      name: 'Hamburg',
+      name: CitiesEnum.Hamburg,
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -281,7 +282,7 @@ export const CARDS: CardType[] = [
       'Baby seat',
       'Kitchen',
       'Dishwasher',
-      'Cabel TV',
+      'Cable TV',
       'Fridge',
     ],
     location: {
@@ -305,7 +306,7 @@ export const CARDS: CardType[] = [
     placeCardName: 'Wood and stone place',
     isFavorite: true,
     city: {
-      name: 'Dusseldorf',
+      name: CitiesEnum.Dusseldorf,
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -321,7 +322,7 @@ export const CARDS: CardType[] = [
       'Baby seat',
       'Kitchen',
       'Dishwasher',
-      'Cabel TV',
+      'Cable TV',
     ],
     location: {
       latitude: 0,
@@ -331,7 +332,7 @@ export const CARDS: CardType[] = [
   },
 ];
 
-export const getRaiting = (starsCount: number) => {
+export const getRating = (starsCount: number) => {
   const percents = starsCount * 20;
   return `${percents}%`;
 };
@@ -345,21 +346,21 @@ export const GOODS: string[] = [
   'Baby seat',
   'Kitchen',
   'Dishwasher',
-  'Cabel TV',
+  'Cable TV',
   'Fridge',
 ];
 
-export const REVIRWS_MOCK: RevierwType[] = [
+export const REVIEWS_MOCK: ReviewType[] = [
   {
     id: 0,
     name: 'Max',
-    raiting: 4,
+    rating: 4,
     text: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
   },
   {
     id: 1,
     name: 'Jack',
-    raiting: 5,
+    rating: 5,
     text: 'everything is beautiful. I recommend',
   },
 ];

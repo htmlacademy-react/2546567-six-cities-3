@@ -1,7 +1,7 @@
-import { getRaiting } from '../mocks/mocks';
-import { RevierwType } from '../utils/type';
+import { getRating } from '../mocks/mocks';
+import { ReviewType } from '../utils/type';
 
-function ReviewItem({ review }: { review: RevierwType }): JSX.Element {
+function ReviewItem({ review }: { review: ReviewType }): JSX.Element {
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -19,7 +19,7 @@ function ReviewItem({ review }: { review: RevierwType }): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: getRaiting(review.raiting) }}></span>
+            <span style={{ width: getRating(review.rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

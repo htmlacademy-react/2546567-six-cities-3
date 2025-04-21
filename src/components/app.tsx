@@ -7,34 +7,34 @@ import { AppRoute, AuthorizationStatus } from './const';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import PrivateRoute from './private-route';
 import Layout from './layout/layout';
-import { CardType } from '../utils/type';
+import { OffersType } from '../utils/type';
 import OfferPage from '../pages/offers-page/offer-page';
 
 type AppProps = {
   offersCount: number;
-  cards: CardType[];
+  offers: OffersType[];
 };
 
-function App({ offersCount, cards }: AppProps) {
+function App({ offersCount, offers }: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Root} element={<Layout />}>
           <Route
             index
-            element={<MainPage offersCount={offersCount} cards={cards} />}
+            element={<MainPage offersCount={offersCount} offers={offers} />}
           />
           <Route
             path={AppRoute.Favorite}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <FavoritePage cards={cards} />
+                <FavoritePage offers={offers} />
               </PrivateRoute>
             }
           />
           <Route
             path={`${AppRoute.Offers}/:id`}
-            element={<OfferPage cards={cards} />}
+            element={<OfferPage offers={offers} />}
           />
         </Route>
         <Route path={AppRoute.Login} element={<LoginPage />} />

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { getRaiting } from '../mocks/mocks';
-import { CardType } from '../utils/type';
+import { getRating } from '../mocks/mocks';
+import { OffersType } from '../utils/type';
 import { AppRoute } from './const';
 
 type CardPropsType = {
-  card: CardType;
-  handleHover?: (card?: CardType) => void;
+  card: OffersType;
+  handleHover?: (card?: OffersType) => void;
 };
 
 function Card({ card, handleHover }: CardPropsType): JSX.Element {
@@ -62,8 +62,8 @@ function Card({ card, handleHover }: CardPropsType): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: getRaiting(card.description.rating) }}></span>
-            <span className="visually-hidden">Raiting</span>
+            <span style={{ width: getRating(card.description.rating) }}></span>
+            <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">

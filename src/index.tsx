@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app';
 import './styles.css';
-import { CARDS } from './mocks/mocks';
+import { OFFERS } from './mocks/mocks';
+import { Provider } from 'react-redux';
+import { store } from './reducer/reducer';
 
 const settings = {
   offersCount: 312,
@@ -14,6 +16,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offersCount={settings.offersCount} cards={CARDS} />
+    <Provider store={store}>
+      <App offersCount={settings.offersCount} offers={OFFERS} />
+    </Provider>
   </React.StrictMode>
 );

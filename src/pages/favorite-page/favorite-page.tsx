@@ -1,8 +1,7 @@
-
-import { CardType } from '../../utils/type';
+import { OffersType } from '../../utils/type';
 import FavoriteCard from './favorite-card';
 
-function FavoritePage({ cards }: { cards: CardType[] }) {
+function FavoritePage({ offers }: { offers: OffersType[] }) {
   return (
     <>
       <main className="page__main page__main--favorites">
@@ -19,8 +18,8 @@ function FavoritePage({ cards }: { cards: CardType[] }) {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <FavoriteCard card={cards[1]} />
-                  <FavoriteCard card={cards[3]} />
+                  <FavoriteCard offer={offers[1]} />
+                  <FavoriteCard offer={offers[3]} />
                 </div>
               </li>
 
@@ -33,7 +32,7 @@ function FavoritePage({ cards }: { cards: CardType[] }) {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <FavoriteCard card={cards[4]} />
+                  <FavoriteCard offer={offers[4]} />
                 </div>
               </li>
             </ul>
@@ -42,7 +41,13 @@ function FavoritePage({ cards }: { cards: CardType[] }) {
       </main>
       <footer className="footer container">
         <a className="footer__logo-link" href="main.html">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
+          <img
+            className="footer__logo"
+            src="img/logo.svg"
+            alt="6 cities logo"
+            width="64"
+            height="33"
+          />
         </a>
       </footer>
     </>
