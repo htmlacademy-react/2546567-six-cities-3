@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App offersCount={settings.offersCount} cards={OFFERS} />
+      <App offersCount={settings.offersCount} offers={OFFERS} />
     </Provider>
   </React.StrictMode>
 );

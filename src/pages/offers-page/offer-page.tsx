@@ -10,9 +10,9 @@ import OfferReviews from '../../components/offer-reviews';
 import MapComponent from '../../components/map-component';
 import getNearOffers from '../../utils/utils';
 
-function OfferPage({ cards }: { cards: OffersType[] }) {
+function OfferPage({ offers }: { offers: OffersType[] }) {
   const params = useParams();
-  const currentCard = cards.find(
+  const currentCard = offers.find(
     (item: OffersType) => item.id === Number(params.id)
   );
 
@@ -20,7 +20,7 @@ function OfferPage({ cards }: { cards: OffersType[] }) {
     return null;
   }
 
-  const nearCards = getNearOffers(currentCard, cards);
+  const nearCards = getNearOffers(currentCard, offers);
 
   return (
     <main className="page__main page__main--offer">
