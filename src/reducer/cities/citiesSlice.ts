@@ -4,7 +4,7 @@ import { CITIES, CitiesEnum } from '../../components/const';
 import { OFFERS } from '../../mocks/mocks';
 
 const DEFAULT_CITY =
-  CITIES.find((item) => item.name === CitiesEnum.Paris) || CITIES[0];
+  CITIES.find((item) => item.name === CitiesEnum.Amsterdam) || CITIES[0];
 
 const DEFAULT_OFFERS = OFFERS.filter(
   (item) => item.city.name === DEFAULT_CITY.name
@@ -20,11 +20,13 @@ export type TCity = {
 export interface CitiesState {
   currentCity: TCity;
   offers: OffersType[];
+  selectedPoint: OffersType | null;
 }
 // изначальное состояние
 const initialState: CitiesState = {
   currentCity: DEFAULT_CITY,
   offers: DEFAULT_OFFERS,
+  selectedPoint: null,
 };
 // хранилище
 const citiesSlice = createSlice({
@@ -39,9 +41,12 @@ const citiesSlice = createSlice({
         state.offers = OFFERS.filter((item) => item.city.name === newCity.name);
       }
     },
+    setSelectedPoint: (state, action: PayloadAction<OffersType | null>) => {
+      state.selectedPoint = action.payload;
+    },
   },
 });
 
-export const { setCurrentCity } = citiesSlice.actions;
+export const { setCurrentCity, setSelectedPoint } = citiesSlice.actions;
 
 export default citiesSlice.reducer;

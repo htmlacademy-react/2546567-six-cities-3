@@ -9,33 +9,36 @@ import { IS_AUTH, REVIEWS_MOCK } from '../../mocks/mocks';
 import OfferReviews from '../../components/offer-reviews';
 import MapComponent from '../../components/map-component';
 import getNearOffers from '../../utils/utils';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducer/reducer';
 
-function OfferPage({ offers }: { offers: OffersType[] }) {
+function OfferPage() {
+  const offers = useSelector((state: RootState) => state.cities.offers);
   const params = useParams();
-  const currentCard = offers.find(
+  const currentOffer = offers.find(
     (item: OffersType) => item.id === Number(params.id)
   );
 
-  if (!currentCard) {
+  if (!currentOffer) {
     return null;
   }
 
-  const nearCards = getNearOffers(currentCard, offers);
+  const nearCards = getNearOffers(currentOffer, offers);
 
   return (
     <main className="page__main page__main--offer">
       <section className="offer">
-        <OfferGallery pictures={currentCard.pictures} />
+        <OfferGallery pictures={currentOffer.pictures} />
         <div className="offer__container container">
           <div className="offer__wrapper">
             <div className="offer__mark">
               <span>Premium</span>
             </div>
-            <OfferDescription description={currentCard.description} />
+            <OfferDescription currentOffer={currentOffer} />
             <div className="offer__inside">
               <h2 className="offer__inside-title">What&apos;s inside</h2>
               <ul className="offer__inside-list">
-                {currentCard.goods.map((offer: string) => (
+                {currentOffer.goods.map((offer: string) => (
                   <li className="offer__inside-item" key={offer}>
                     {offer}
                   </li>
@@ -76,9 +79,9 @@ function OfferPage({ offers }: { offers: OffersType[] }) {
         </div>
         <MapComponent
           className={'offer__map'}
-          city={currentCard.city}
+          city={currentOffer.city}
           offers={nearCards}
-          selectedPoint={currentCard}
+          selectedPoint={currentOffer}
         />
       </section>
       <div className="container">
@@ -88,7 +91,7 @@ function OfferPage({ offers }: { offers: OffersType[] }) {
           </h2>
           <div className="near-places__list places__list">
             {nearCards.map((item) => (
-              <Card key={item.id} card={item} />
+              <Card key={item.id} offer={item} />
             ))}
           </div>
         </section>

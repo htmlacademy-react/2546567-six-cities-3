@@ -22,9 +22,7 @@ function LocationListMain(): JSX.Element {
               })}
               onClick={(evt) => {
                 evt.preventDefault();
-                // console.log(evt.target.textContent);
                 dispatch(setCurrentCity(city));
-                // dispatchEvent( (city.name));
               }}
               to={AppRoute.Root}
             >

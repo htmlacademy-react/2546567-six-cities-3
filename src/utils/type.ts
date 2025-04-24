@@ -13,8 +13,6 @@ export type TLocationCoordinates = {
 };
 
 export type TDescription = {
-  priceValue: number;
-  rating: number;
   placeCardType: string;
   maxAdults: number;
   bedrooms: number;
@@ -31,6 +29,8 @@ export type OffersType = {
   city: TCity;
   goods: string[];
   location: TLocationCoordinates;
+  price: number;
+  rating: number;
 };
 
 export const getLayoutState = (pathname: AppRoute) => {

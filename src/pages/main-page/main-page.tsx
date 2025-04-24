@@ -1,23 +1,17 @@
 import { useSelector } from 'react-redux';
-import { placesOption } from '../../components/const';
 import LocationListMain from '../../components/location-list-main';
-import { MainPageProps } from '../../utils/type';
 import { RootState } from '../../reducer/reducer';
 import CardList from './card-list';
 import MapComponent from '../../components/map-component';
 
-function MainPage({ offersCount }: MainPageProps): JSX.Element {
-  const offers = useSelector((state: RootState) => state.cities.offers);
-
+function MainPage(): JSX.Element {
+  const currentOffers = useSelector((state: RootState) => state.cities.offers);
   const currentCity = useSelector(
     (state: RootState) => state.cities.currentCity
   );
-
-  // const currentOffers = OFFERS.filter(
-  //   (card) => card.city.name === currentCity.name
-  // );
-
-  // const isEmpty = currentOffers.length === 0;
+  const selectedPoint = useSelector(
+    (state: RootState) => state.cities.selectedPoint
+  );
 
   return (
     <main className="page__main page__main--index">
@@ -30,31 +24,17 @@ function MainPage({ offersCount }: MainPageProps): JSX.Element {
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
-              {offersCount} places to stay in Amsterdam
+              {currentOffers.length} place{currentOffers.length > 1 && 's'} to
+              stay in {currentCity.name}
             </b>
-            <form className="places__sorting" action="#" method="get">
-              <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex={0}>
-                Popular
-                <svg className="places__sorting-arrow" width="7" height="4">
-                  <use xlinkHref="#icon-arrow-select"></use>
-                </svg>
-              </span>
-              <ul className="places__options places__options--custom places__options--opened">
-                {placesOption.map((place) => (
-                  <li key={place} className="places__option" tabIndex={0}>
-                    {place}
-                  </li>
-                ))}
-              </ul>
-            </form>
-            <CardList cards={offers} />
+
+            <CardList offers={currentOffers} />
           </section>
           <div className="cities__right-section">
             <MapComponent
               city={currentCity}
-              offers={offers}
-              selectedPoint={offers[0]}
+              offers={currentOffers}
+              selectedPoint={selectedPoint}
               className={'cities__map'}
             />
           </div>
