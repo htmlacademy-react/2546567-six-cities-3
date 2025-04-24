@@ -25,7 +25,7 @@ type MapComponentProps = {
   className: string;
   city: TCity;
   offers: OffersType[];
-  selectedPoint: OffersType | undefined;
+  selectedPoint: OffersType | null;
 };
 
 function MapComponent({
@@ -48,7 +48,7 @@ function MapComponent({
 
         marker
           .setIcon(
-            selectedPoint !== undefined && offer.id === selectedPoint.id
+            selectedPoint !== undefined && offer.id === selectedPoint?.id
               ? currentCustomIcon
               : defaultCustomIcon
           )

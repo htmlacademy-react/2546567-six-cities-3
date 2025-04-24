@@ -2,33 +2,28 @@ import { Link } from 'react-router-dom';
 import { getRating } from '../mocks/mocks';
 import { OffersType } from '../utils/type';
 import { AppRoute } from './const';
+import { setSelectedPoint } from '../reducer/cities/citiesSlice';
+import { useDispatch } from 'react-redux';
 
 type CardPropsType = {
-  card: OffersType;
-  handleHover?: (card?: OffersType) => void;
+  offer: OffersType;
 };
 
-function Card({ card, handleHover }: CardPropsType): JSX.Element {
-  const handleMouseOn = () => {
-    if (handleHover) {
-      handleHover(card);
-    }
-  };
-
-  const handleMouseOff = () => {
-    if (handleHover) {
-      handleHover();
-    }
-  };
+function Card({ offer }: CardPropsType): JSX.Element {
+  const dispatch = useDispatch();
 
   return (
     <article
       className="cities__card place-card"
-      onMouseEnter={handleMouseOn}
-      onMouseLeave={handleMouseOff}
-      key={card.id}
+      onMouseEnter={() => {
+        dispatch(setSelectedPoint(offer));
+      }}
+      onMouseLeave={() => {
+        dispatch(setSelectedPoint(null));
+      }}
+      key={offer.id}
     >
-      {card.premiumMark === true && (
+      {offer.premiumMark === true && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -36,7 +31,7 @@ function Card({ card, handleHover }: CardPropsType): JSX.Element {
       <div className="cities__image-wrapper place-card__image-wrapper">
         <img
           className="place-card__image"
-          src={card.img}
+          src={offer.img}
           width="260"
           height="200"
           alt="Place image"
@@ -45,9 +40,7 @@ function Card({ card, handleHover }: CardPropsType): JSX.Element {
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">
-              &euro;{card.description.priceValue}
-            </b>
+            <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
@@ -62,14 +55,16 @@ function Card({ card, handleHover }: CardPropsType): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: getRating(card.description.rating) }}></span>
+            <span style={{ width: getRating(offer.rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offers}/${card.id}`}>{card.placeCardName}</Link>
+          <Link to={`${AppRoute.Offers}/${offer.id}`}>
+            {offer.placeCardName}
+          </Link>
         </h2>
-        <p className="place-card__type">{card.description.placeCardType}</p>
+        <p className="place-card__type">{offer.description.placeCardType}</p>
       </div>
     </article>
   );
