@@ -1,7 +1,9 @@
-import { OffersType } from '../../utils/type';
+import { useSelector } from 'react-redux';
 import FavoriteCard from './favorite-card';
+import { RootState } from '../../reducer/reducer';
 
-function FavoritePage({ offers }: { offers: OffersType[] }) {
+function FavoritePage() {
+  const offers = useSelector((state: RootState) => state.cities.offers);
   return (
     <>
       <main className="page__main page__main--favorites">

@@ -9,8 +9,11 @@ import { IS_AUTH, REVIEWS_MOCK } from '../../mocks/mocks';
 import OfferReviews from '../../components/offer-reviews';
 import MapComponent from '../../components/map-component';
 import getNearOffers from '../../utils/utils';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducer/reducer';
 
-function OfferPage({ offers }: { offers: OffersType[] }) {
+function OfferPage() {
+  const offers = useSelector((state: RootState) => state.cities.offers);
   const params = useParams();
   const currentOffer = offers.find(
     (item: OffersType) => item.id === Number(params.id)
