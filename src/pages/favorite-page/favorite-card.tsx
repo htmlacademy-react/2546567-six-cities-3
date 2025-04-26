@@ -1,4 +1,3 @@
-import { getRating } from '../../mocks/mocks';
 import { OffersType } from '../../utils/type';
 
 type FavoriteCardPropsType = {
@@ -17,7 +16,7 @@ function FavoriteCard({ offer }: FavoriteCardPropsType): JSX.Element {
         <a href="#">
           <img
             className="place-card__image"
-            src={offer.img}
+            src={offer.previewImage}
             width="150"
             height="110"
             alt="Place image"
@@ -42,7 +41,7 @@ function FavoriteCard({ offer }: FavoriteCardPropsType): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: getRating(offer.rating) }}></span>
+            {/* <span style={{ width: getRating(offer.rating) }}></span> */}
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

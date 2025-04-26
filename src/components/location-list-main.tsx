@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import { AppRoute, CITIES } from './const';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../reducer/reducer';
 import { setCurrentCity } from '../reducer/cities/citiesSlice';
+import { RootState } from '../store.ts';
 
 function LocationListMain(): JSX.Element {
   const dispatch = useDispatch();

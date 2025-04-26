@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { getRating } from '../mocks/mocks';
 import { OffersType } from '../utils/type';
 import { AppRoute } from './const';
 import { setSelectedPoint } from '../reducer/cities/citiesSlice';
 import { useDispatch } from 'react-redux';
+import { getRating } from '../mocks/mocks';
 
 type CardPropsType = {
   offer: OffersType;
@@ -31,7 +31,7 @@ function Card({ offer }: CardPropsType): JSX.Element {
       <div className="cities__image-wrapper place-card__image-wrapper">
         <img
           className="place-card__image"
-          src={offer.img}
+          src={offer.previewImage}
           width="260"
           height="200"
           alt="Place image"
@@ -64,7 +64,7 @@ function Card({ offer }: CardPropsType): JSX.Element {
             {offer.placeCardName}
           </Link>
         </h2>
-        <p className="place-card__type">{offer.description.placeCardType}</p>
+        <p className="place-card__type">{offer.description?.placeCardType}</p>
       </div>
     </article>
   );

@@ -1,30 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Card from '../../components/card';
-import { OffersType } from '../../utils/type';
+
 import { SortOption } from '../../components/const';
 import Sort from '../../components/sort';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store.ts';
 
-function CardList({ offers }: { offers: OffersType[] }): JSX.Element {
-  const [sortedOffers, setSortedOffers] = useState<OffersType[]>(offers);
+function CardList(): JSX.Element {
+  const offers = useSelector(
+    (state: RootState) => state.cities.currentCity.offers
+  );
   const [activeSort, setActiveSort] = useState<SortOption>(SortOption.Popular);
+
+  const sortedOffers = useMemo(() => {
+    switch (activeSort) {
+      case SortOption.PriceLowToHigh:
+        return [...offers].sort((a, b) => a.price - b.price);
+      case SortOption.PriceHighToLow:
+        return [...offers].sort((a, b) => b.price - a.price);
+      case SortOption.TopRatedFirst:
+        return [...offers].sort((a, b) => b.rating - a.rating);
+      default:
+        return offers;
+    }
+  }, [offers, activeSort]);
 
   const onSortChange = (option: SortOption) => {
     setActiveSort(option);
   };
-
-  useEffect(() => {
-    if (activeSort === SortOption.PriceLowToHigh) {
-      setSortedOffers(offers.toSorted((a, b) => a.price - b.price));
-    }
-
-    if (activeSort === SortOption.PriceHighToLow) {
-      setSortedOffers(offers.toSorted((a, b) => b.price - a.price));
-    }
-
-    if (activeSort === SortOption.TopRatedFirst) {
-      setSortedOffers(offers.toSorted((a, b) => b.rating - a.rating));
-    }
-  }, [activeSort, offers]);
 
   return (
     <>

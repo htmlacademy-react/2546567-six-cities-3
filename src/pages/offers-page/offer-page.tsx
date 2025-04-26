@@ -5,15 +5,16 @@ import OfferReviewsList from './offers-reviews-list';
 import { OffersType } from '../../utils/type';
 import OfferHost from './offer-host';
 import OfferDescription from './offer-description';
-import { IS_AUTH, REVIEWS_MOCK } from '../../mocks/mocks';
-import OfferReviews from '../../components/offer-reviews';
 import MapComponent from '../../components/map-component';
 import getNearOffers from '../../utils/utils';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../reducer/reducer';
+import { RootState } from '../../store.ts';
+import { REVIEWS_MOCK } from '../../mocks/mocks.ts';
 
 function OfferPage() {
-  const offers = useSelector((state: RootState) => state.cities.offers);
+  const offers = useSelector(
+    (state: RootState) => state.cities.currentCity.offers
+  );
   const params = useParams();
   const currentOffer = offers.find(
     (item: OffersType) => item.id === Number(params.id)
@@ -68,19 +69,18 @@ function OfferPage() {
                 <span className="reviews__amount">{REVIEWS_MOCK.length}</span>
               </h2>
               <OfferReviewsList />
-              {IS_AUTH && <OfferReviews />}
+              {/* {IS_AUTH && <OfferReviews />}
               {!IS_AUTH && (
                 <p className="reviews__subtitle">
                   ...Пожалуйста, авторизуйтесь...
                 </p>
-              )}
+              )} */}
             </section>
           </div>
         </div>
         <MapComponent
           className={'offer__map'}
           city={currentOffer.city}
-          offers={nearCards}
           selectedPoint={currentOffer}
         />
       </section>
