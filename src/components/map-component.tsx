@@ -8,6 +8,8 @@ import {
   URL_MARKER_DEFAULT,
 } from './const';
 import { TCity } from '../reducer/cities/citiesSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store.ts';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -24,22 +26,27 @@ const currentCustomIcon = new Icon({
 type MapComponentProps = {
   className: string;
   city: TCity;
-  offers: OffersType[];
   selectedPoint: OffersType | null;
 };
 
 function MapComponent({
   className,
   city,
-  offers,
   selectedPoint,
 }: MapComponentProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const offers = useSelector(
+    (state: RootState) => state.cities.currentCity.offers
+  );
 
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
+      map.setView(
+        [city.location.latitude, city.location.longitude],
+        city.location.zoom
+      );
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -59,7 +66,14 @@ function MapComponent({
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, selectedPoint]);
+  }, [
+    map,
+    offers,
+    selectedPoint,
+    city.location.latitude,
+    city.location.longitude,
+    city.location.zoom,
+  ]);
 
   return <section className={`${className} map`} ref={mapRef} />;
 }

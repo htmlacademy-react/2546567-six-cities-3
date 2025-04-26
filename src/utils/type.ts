@@ -20,7 +20,7 @@ export type TDescription = {
 
 export type OffersType = {
   id: number;
-  img: string;
+  previewImage: string;
   pictures: string[];
   description: TDescription;
   premiumMark: boolean;
