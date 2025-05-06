@@ -46,7 +46,7 @@ function FavoriteCard({ offer }: FavoriteCardPropsType): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.placeCardName}</a>
+          <a href="#">{offer.title}</a>
         </h2>
         <p className="place-card__type">{offer.description.placeCardType}</p>
       </div>

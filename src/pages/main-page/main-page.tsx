@@ -4,7 +4,7 @@ import CardList from './card-list';
 import MapComponent from '../../components/map-component';
 import { RootState, useAppDispatch } from '../../store.ts';
 import { useEffect } from 'react';
-import { fetchAllOffers } from '../../reducer/cities/citiesSlice.ts';
+import { fetchAllOffers } from '../../reducer/cities/cities-slice.ts';
 import { RequestStatus } from '../../components/const.ts';
 import Loading from '../../components/loading.tsx';
 

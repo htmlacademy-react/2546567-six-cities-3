@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { AppRoute, CITIES } from './const';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentCity } from '../reducer/cities/citiesSlice';
+import { setCurrentCity } from '../reducer/cities/cities-slice.ts';
 import { RootState } from '../store.ts';
 
 function LocationListMain(): JSX.Element {

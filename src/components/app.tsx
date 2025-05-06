@@ -3,13 +3,28 @@ import FavoritePage from '../pages/favorite-page/favorite-page';
 import LoginPage from '../pages/login-page/login-page';
 import MainPage from '../pages/main-page/main-page';
 
-import { AppRoute, AuthorizationStatus } from './const';
+import { AppRoute } from './const';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import PrivateRoute from './private-route';
 import Layout from './layout/layout';
 import OfferPage from '../pages/offers-page/offer-page';
+import { useEffect } from 'react';
+import { RootState, useAppDispatch } from '../store.ts';
+import { fetchLogin } from '../reducer/cities/user-slice.ts';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  // Выполняем запрос при монтировании компонента
+  useEffect(() => {
+    dispatch(fetchLogin());
+  }, [dispatch]);
+
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.user.authorizationStatus
+  );
+
   return (
     <BrowserRouter>
       <Routes>
@@ -18,7 +33,7 @@ function App() {
           <Route
             path={AppRoute.Favorite}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <FavoritePage />
               </PrivateRoute>
             }
