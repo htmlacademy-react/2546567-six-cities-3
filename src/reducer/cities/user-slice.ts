@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../../utils/type';
 import { AuthorizationStatus, RequestStatus } from '../../components/const';
 import { API } from '../../services.ts/api';
 import { AUTH_TOKEN_KEY } from '../../services.ts/token';
+import { UserInfo } from '../../utils/type';
 
 type AuthResponse = {
   avatarUrl: string;
@@ -13,7 +13,7 @@ type AuthResponse = {
 };
 
 type UserState = {
-  info: User | null;
+  info: UserInfo | null;
   requestStatus: RequestStatus;
   authorizationStatus: AuthorizationStatus;
   authData: AuthResponse | null;

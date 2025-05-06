@@ -20,7 +20,7 @@ function Header(): JSX.Element {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className={`header__logo-link${linkClassName}`}>
+            <a className={`header__logo-link${linkClassName}`} href="/">
               <img
                 className="header__logo"
                 src="img/logo.svg"

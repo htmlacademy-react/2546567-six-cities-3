@@ -1,5 +1,3 @@
-import { ReviewType as ReviewType } from '../utils/type';
-
 export const IS_AUTH = true;
 
 export const getRating = (starsCount: number) => {
@@ -18,19 +16,4 @@ export const GOODS: string[] = [
   'Dishwasher',
   'Cable TV',
   'Fridge',
-];
-
-export const REVIEWS_MOCK: ReviewType[] = [
-  {
-    id: 0,
-    name: 'Max',
-    rating: 4,
-    text: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
-  },
-  {
-    id: 1,
-    name: 'Jack',
-    rating: 5,
-    text: 'everything is beautiful. I recommend',
-  },
 ];
