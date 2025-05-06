@@ -16,9 +16,8 @@ function OfferPage() {
     (state: RootState) => state.cities.currentCity.offers
   );
   const params = useParams();
-  const currentOffer = offers.find(
-    (item: OffersType) => item.id === Number(params.id)
-  );
+
+  const currentOffer = offers.find((item: OffersType) => item.id === params.id);
 
   if (!currentOffer) {
     return null;
@@ -39,7 +38,7 @@ function OfferPage() {
             <div className="offer__inside">
               <h2 className="offer__inside-title">What&apos;s inside</h2>
               <ul className="offer__inside-list">
-                {currentOffer.goods.map((offer: string) => (
+                {currentOffer.goods?.map((offer: string) => (
                   <li className="offer__inside-item" key={offer}>
                     {offer}
                   </li>

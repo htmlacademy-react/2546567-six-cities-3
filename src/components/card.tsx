@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { OffersType } from '../utils/type';
 import { AppRoute } from './const';
-import { setSelectedPoint } from '../reducer/cities/citiesSlice';
+import { setSelectedPoint } from '../reducer/cities/cities-slice';
 import { useDispatch } from 'react-redux';
 import { getRating } from '../mocks/mocks';
 
@@ -60,9 +60,7 @@ function Card({ offer }: CardPropsType): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offers}/${offer.id}`}>
-            {offer.placeCardName}
-          </Link>
+          <Link to={`${AppRoute.Offers}/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.description?.placeCardType}</p>
       </div>

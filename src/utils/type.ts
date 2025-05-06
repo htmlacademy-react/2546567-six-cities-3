@@ -1,5 +1,5 @@
 import { AppRoute } from '../components/const';
-import { TCity } from '../reducer/cities/citiesSlice';
+import { TCity } from '../reducer/cities/cities-slice';
 
 export type MainPageProps = {
   offersCount: number;
@@ -19,12 +19,12 @@ export type TDescription = {
 };
 
 export type OffersType = {
-  id: number;
+  id: string;
   previewImage: string;
   pictures: string[];
   description: TDescription;
   premiumMark: boolean;
-  placeCardName: string;
+  title: string;
   isFavorite: boolean;
   city: TCity;
   goods: string[];
@@ -56,4 +56,8 @@ export type ReviewType = {
   name: string;
   rating: number;
   text: string;
+};
+
+export type User = {
+  name: string;
 };

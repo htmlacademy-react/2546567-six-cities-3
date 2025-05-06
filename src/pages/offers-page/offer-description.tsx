@@ -1,3 +1,4 @@
+import Loading from '../../components/loading';
 import { OffersType } from '../../utils/type';
 
 type OfferDescriptionProps = {
@@ -7,6 +8,10 @@ type OfferDescriptionProps = {
 function OfferDescription({
   currentOffer,
 }: OfferDescriptionProps): JSX.Element {
+  if (!currentOffer) {
+    return <Loading />;
+  }
+
   return (
     <>
       <div className="offer__name-wrapper">
@@ -28,15 +33,9 @@ function OfferDescription({
         <span className="offer__rating-value rating__value">4.8</span>
       </div>
       <ul className="offer__features">
-        <li className="offer__feature offer__feature--entire">
-          {currentOffer.description.placeCardType}
-        </li>
-        <li className="offer__feature offer__feature--bedrooms">
-          {currentOffer.description.bedrooms}Bedrooms
-        </li>
-        <li className="offer__feature offer__feature--adults">
-          Max {currentOffer.description.maxAdults} adults
-        </li>
+        <li className="offer__feature offer__feature--entire">entire</li>
+        <li className="offer__feature offer__feature--bedrooms">Bedrooms</li>
+        <li className="offer__feature offer__feature--adults">Max 13 adults</li>
       </ul>
       <div className="offer__price">
         <b className="offer__price-value">&euro;{currentOffer.price}</b>

@@ -1,4 +1,4 @@
-import { TCity } from '../reducer/cities/citiesSlice';
+import { TCity } from '../reducer/cities/cities-slice';
 
 export enum CitiesEnum {
   Paris = 'Paris',

@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
 import { getToken } from './token';
-import { tokenToString } from 'typescript';
 
 const enum Default {
   BACKEND_URL = 'https://15.design.htmlacademy.pro/six-cities',
@@ -15,9 +14,11 @@ function createAPI(): AxiosInstance {
 
   api.interceptors.request.use((config) => {
     const token = getToken();
+
     if (token && config.headers) {
-      config.headers['x-Token'] = tokenToString;
+      config.headers['X-Token'] = token; // Исправлено здесь
     }
+
     return config;
   });
   return api;
