@@ -16,6 +16,7 @@ function MainPage(): JSX.Element {
   const selectedPoint = useSelector(
     (state: RootState) => state.cities.selectedPoint
   );
+
   const status = useSelector((state: RootState) => state.cities.status);
 
   // Выполняем запрос при монтировании компонента

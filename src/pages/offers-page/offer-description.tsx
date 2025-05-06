@@ -1,8 +1,8 @@
 import Loading from '../../components/loading';
-import { OffersType } from '../../utils/type';
+import { CurrentOfferType } from '../../utils/type';
 
 type OfferDescriptionProps = {
-  currentOffer: OffersType;
+  currentOffer: CurrentOfferType;
 };
 
 function OfferDescription({
@@ -15,9 +15,7 @@ function OfferDescription({
   return (
     <>
       <div className="offer__name-wrapper">
-        <h1 className="offer__name">
-          Beautiful &amp; luxurious studio at great location
-        </h1>
+        <h1 className="offer__name">{currentOffer.title}</h1>
         <button className="offer__bookmark-button button" type="button">
           <svg className="offer__bookmark-icon" width="31" height="33">
             <use xlinkHref="#icon-bookmark"></use>
@@ -33,9 +31,15 @@ function OfferDescription({
         <span className="offer__rating-value rating__value">4.8</span>
       </div>
       <ul className="offer__features">
-        <li className="offer__feature offer__feature--entire">entire</li>
-        <li className="offer__feature offer__feature--bedrooms">Bedrooms</li>
-        <li className="offer__feature offer__feature--adults">Max 13 adults</li>
+        <li className="offer__feature offer__feature--entire">
+          {currentOffer.type}
+        </li>
+        <li className="offer__feature offer__feature--bedrooms">
+          {currentOffer.bedrooms} Bedrooms
+        </li>
+        <li className="offer__feature offer__feature--adults">
+          Max {currentOffer.maxAdults} adults
+        </li>
       </ul>
       <div className="offer__price">
         <b className="offer__price-value">&euro;{currentOffer.price}</b>

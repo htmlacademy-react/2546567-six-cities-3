@@ -27,12 +27,14 @@ type MapComponentProps = {
   className: string;
   city: TCity;
   selectedPoint: OffersType | null;
+  nearbyOffers?: OffersType[];
 };
 
 function MapComponent({
   className,
   city,
   selectedPoint,
+  nearbyOffers,
 }: MapComponentProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -47,20 +49,38 @@ function MapComponent({
         [city.location.latitude, city.location.longitude],
         city.location.zoom
       );
-      offers.forEach((offer) => {
-        const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
-        });
 
-        marker
-          .setIcon(
-            selectedPoint !== undefined && offer.id === selectedPoint?.id
-              ? currentCustomIcon
-              : defaultCustomIcon
-          )
-          .addTo(markerLayer);
-      });
+      if (nearbyOffers?.length) {
+        nearbyOffers.forEach((offer) => {
+          const marker = new Marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          });
+
+          marker
+            .setIcon(
+              selectedPoint !== undefined && offer.id === selectedPoint?.id
+                ? currentCustomIcon
+                : defaultCustomIcon
+            )
+            .addTo(markerLayer);
+        });
+      } else {
+        offers.forEach((offer) => {
+          const marker = new Marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          });
+
+          marker
+            .setIcon(
+              selectedPoint !== undefined && offer.id === selectedPoint?.id
+                ? currentCustomIcon
+                : defaultCustomIcon
+            )
+            .addTo(markerLayer);
+        });
+      }
 
       return () => {
         map.removeLayer(markerLayer);
@@ -69,6 +89,7 @@ function MapComponent({
   }, [
     map,
     offers,
+    nearbyOffers,
     selectedPoint,
     city.location.latitude,
     city.location.longitude,

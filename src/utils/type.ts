@@ -33,6 +33,30 @@ export type OffersType = {
   rating: number;
 };
 
+export type UserInfo = {
+  isPro: boolean;
+  name: string;
+  avatarUrl: string;
+};
+
+export type CurrentOfferType = {
+  bedrooms: number;
+  city: TCity;
+  description: string;
+  goods: string[];
+  host: UserInfo;
+  id: string;
+  images: string[];
+  isFavorite: boolean;
+  isPremium: boolean;
+  location: TLocationCoordinates;
+  maxAdults: number;
+  price: number;
+  rating: number;
+  title: string;
+  type: string;
+};
+
 export const getLayoutState = (pathname: AppRoute) => {
   let rootClassName = '';
   let linkClassName = '';
@@ -49,15 +73,4 @@ export const getLayoutState = (pathname: AppRoute) => {
     shouldRenderFooter = true;
   }
   return { rootClassName, linkClassName, shouldRenderUser, shouldRenderFooter };
-};
-
-export type ReviewType = {
-  id: number;
-  name: string;
-  rating: number;
-  text: string;
-};
-
-export type User = {
-  name: string;
 };
