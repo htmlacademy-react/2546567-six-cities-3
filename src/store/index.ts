@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import citiesReducer from '../reducer/cities/cities-slice';
+import citiesReducer from './slices/cities-slice';
 import { useDispatch } from 'react-redux';
-import { API } from '../services.ts/api';
-import userReducer from '../reducer/cities/user-slice';
+import { API } from '../services/api';
+import userReducer from './slices/user-slice';
 
 export const store = configureStore({
   reducer: {

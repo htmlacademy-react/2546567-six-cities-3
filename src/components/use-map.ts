@@ -1,6 +1,6 @@
 import { useEffect, useState, MutableRefObject, useRef } from 'react';
 import { Map, TileLayer } from 'leaflet';
-import { TCity } from '../reducer/cities/cities-slice';
+import { TCity } from '../store/slices/cities-slice';
 
 function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,

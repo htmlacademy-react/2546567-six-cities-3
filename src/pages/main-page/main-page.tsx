@@ -2,11 +2,11 @@ import { useSelector } from 'react-redux';
 import LocationListMain from '../../components/location-list-main';
 import CardList from './card-list';
 import MapComponent from '../../components/map-component';
-import { RootState, useAppDispatch } from '../../store.ts';
+import { RootState, useAppDispatch } from '../../store/index.ts';
 import { useEffect } from 'react';
-import { fetchAllOffers } from '../../reducer/cities/cities-slice.ts';
 import { RequestStatus } from '../../components/const.ts';
 import Loading from '../../components/loading.tsx';
+import { fetchAllOffers } from '../../store/middleware/cities-thunk.ts';
 
 function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();

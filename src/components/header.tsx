@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { getLayoutState } from '../utils/type';
 import { AppRoute, AuthorizationStatus } from './const';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store.ts';
+import { RootState } from '../store/index.ts';
 
 function Header(): JSX.Element {
   const { pathname } = useLocation();

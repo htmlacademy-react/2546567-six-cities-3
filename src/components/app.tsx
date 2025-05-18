@@ -9,9 +9,9 @@ import PrivateRoute from './private-route';
 import Layout from './layout/layout';
 import OfferPage from '../pages/offers-page/offer-page';
 import { useEffect } from 'react';
-import { RootState, useAppDispatch } from '../store.ts';
-import { fetchLogin } from '../reducer/cities/user-slice.ts';
+import { RootState, useAppDispatch } from '../store/index.ts';
 import { useSelector } from 'react-redux';
+import { fetchLogin } from '../store/middleware/user-thunk.ts';
 
 function App() {
   const dispatch = useAppDispatch();

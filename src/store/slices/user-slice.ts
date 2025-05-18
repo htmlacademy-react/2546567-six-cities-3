@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus, RequestStatus } from '../../components/const';
-import { API } from '../../services.ts/api';
-import { AUTH_TOKEN_KEY } from '../../services.ts/token';
 import { UserInfo } from '../../utils/type';
+import { fetchLogin, tryAuth } from '../middleware/user-thunk';
+import { AUTH_TOKEN_KEY } from '../../services/token';
 
-type AuthResponse = {
+export type AuthResponse = {
   avatarUrl: string;
   email: string;
   isPro: boolean;
@@ -12,7 +12,7 @@ type AuthResponse = {
   token: string;
 };
 
-type UserState = {
+export type UserState = {
   info: UserInfo | null;
   requestStatus: RequestStatus;
   authorizationStatus: AuthorizationStatus;
@@ -32,31 +32,6 @@ const initialState: UserState = {
   authData: null,
   loading: RequestStatus.Idle,
 };
-
-export const fetchLogin = createAsyncThunk(
-  'login/fetchLogin',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await API.get<AuthResponse>('/login');
-      return data;
-    } catch (err) {
-      return rejectWithValue('Failed to load login');
-    }
-  }
-);
-
-export const tryAuth = createAsyncThunk(
-  'login/tryAuth',
-  async (payload: AuthPayload, { rejectWithValue }) => {
-    // Указываем payload с типом
-    try {
-      const { data } = await API.post<AuthResponse>('/login', payload);
-      return data;
-    } catch (err) {
-      return rejectWithValue('Failed to try auth');
-    }
-  }
-);
 
 // хранилище
 const userSlice = createSlice({

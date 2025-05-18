@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import FavoriteCard from './favorite-card';
-import { RootState } from '../../store.ts';
+import { RootState } from '../../store/index.ts';
 
 function FavoritePage() {
   const offers = useSelector(
