@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import ReviewItem from '../../components/review-card';
-import { RootState } from '../../store.ts';
+import { RootState } from '../../store/index.ts';
 
 function OfferReviewsList(): JSX.Element {
   const comments = useSelector((state: RootState) => state.cities.comments);

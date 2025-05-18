@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { OffersType } from '../utils/type';
 import { AppRoute } from './const';
-import { setSelectedPoint } from '../reducer/cities/cities-slice';
+import { setSelectedPoint } from '../store/slices/cities-slice';
 import { useDispatch } from 'react-redux';
 import { getRating } from '../mocks/mocks';
 

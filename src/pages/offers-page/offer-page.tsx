@@ -6,15 +6,15 @@ import OfferHost from './offer-host';
 import OfferDescription from './offer-description';
 import MapComponent from '../../components/map-component';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../store.ts';
+import { RootState, useAppDispatch } from '../../store/index.ts';
 import { useEffect } from 'react';
+import { AuthorizationStatus } from '../../components/const.ts';
+import OfferReviewForm from '../../components/offer-review-form.tsx';
 import {
   fetchComments,
   fetchCurrentOffer,
   fetchNearbyOffers,
-} from '../../reducer/cities/cities-slice.ts';
-import { AuthorizationStatus } from '../../components/const.ts';
-import OfferReviewForm from '../../components/offer-review-form.tsx';
+} from '../../store/middleware/cities-thunk.ts';
 
 function OfferPage() {
   const dispatch = useAppDispatch();

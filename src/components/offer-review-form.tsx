@@ -1,7 +1,8 @@
-import { Fragment, ReactEventHandler, useState } from 'react';
+import { Fragment, ReactEventHandler, useCallback, useState } from 'react';
 import { rating } from './const.ts';
-import { useAppDispatch } from '../store.ts/index.ts';
-import { NewComment, sendComment } from '../reducer/cities/cities-slice.ts';
+import { useAppDispatch } from '../store/index.ts';
+import { NewComment } from '../store/slices/cities-slice.ts';
+import { sendComment } from '../store/middleware/cities-thunk.ts';
 
 type HandleChange = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
@@ -14,43 +15,49 @@ function OfferReviewForm({ id }: OfferReviewProps): JSX.Element {
   const [review, setReview] = useState({ rating: 0, review: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange: HandleChange = (event) => {
-    const { name, value } = event.currentTarget;
-    setReview({
-      ...review,
-      [name]: name === 'rating' ? Number(value) : value,
-    });
-  };
-
-  const handleSubmit = (evt: React.FormEvent) => {
-    evt.preventDefault();
-
-    // Проверяем валидность формы перед отправкой
-    if (review.review.length < 50 || review.rating === 0) {
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    const comment: NewComment = {
-      offerId: id,
-      comment: review.review,
-      rating: Number(review.rating),
-    };
-
-    dispatch(sendComment(comment))
-      .unwrap()
-      .then(() => {
-        // Очищаем форму после успешной отправки
-        setReview({ rating: 0, review: '' });
-      })
-      .catch(() => {
-        throw new Error('failed to send comment');
-      })
-      .finally(() => {
-        setIsSubmitting(false);
+  const handleChange: HandleChange = useCallback(
+    (event) => {
+      const { name, value } = event.currentTarget;
+      setReview({
+        ...review,
+        [name]: name === 'rating' ? Number(value) : value,
       });
-  };
+    },
+    [review]
+  );
+
+  const handleSubmit = useCallback(
+    (evt: React.FormEvent) => {
+      evt.preventDefault();
+
+      // Проверяем валидность формы перед отправкой
+      if (review.review.length < 50 || review.rating === 0) {
+        return;
+      }
+
+      setIsSubmitting(true);
+
+      const comment: NewComment = {
+        offerId: id,
+        comment: review.review,
+        rating: Number(review.rating),
+      };
+
+      dispatch(sendComment(comment))
+        .unwrap()
+        .then(() => {
+          // Очищаем форму после успешной отправки
+          setReview({ rating: 0, review: '' });
+        })
+        .catch(() => {
+          throw new Error('failed to send comment');
+        })
+        .finally(() => {
+          setIsSubmitting(false);
+        });
+    },
+    [dispatch, id, review.rating, review.review]
+  );
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
 import { AppRoute } from '../components/const';
-import { TCity } from '../reducer/cities/cities-slice';
+import { TCity } from '../store/slices/cities-slice';
 
 export type MainPageProps = {
   offersCount: number;

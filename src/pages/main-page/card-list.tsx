@@ -4,7 +4,7 @@ import Card from '../../components/card';
 import { SortOption } from '../../components/const';
 import Sort from '../../components/sort';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store.ts';
+import { RootState } from '../../store/index.ts';
 
 function CardList(): JSX.Element {
   const offers = useSelector(

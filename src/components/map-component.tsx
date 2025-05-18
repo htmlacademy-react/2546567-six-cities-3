@@ -7,9 +7,9 @@ import {
   URL_MARKER_ACTIVE as URL_MARKER_ACTIVE,
   URL_MARKER_DEFAULT,
 } from './const';
-import { TCity } from '../reducer/cities/cities-slice.ts';
+import { TCity } from '../store/slices/cities-slice.ts';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store.ts';
+import { RootState } from '../store/index.ts';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,

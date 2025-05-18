@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { RootState, useAppDispatch } from '../../store.ts';
-import { AuthPayload, tryAuth } from '../../reducer/cities/user-slice.ts';
+import { RootState, useAppDispatch } from '../../store/index.ts';
+import { AuthPayload } from '../../store/slices/user-slice.ts';
 import { useSelector } from 'react-redux';
 import { AuthorizationStatus } from '../../components/const.ts';
+import { tryAuth } from '../../store/middleware/user-thunk.ts';
 
 function LoginPage() {
   const dispatch = useAppDispatch();

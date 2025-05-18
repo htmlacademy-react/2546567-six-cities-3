@@ -1,5 +1,5 @@
 import { getRating } from '../mocks/mocks';
-import { ReviewType } from '../reducer/cities/cities-slice';
+import { ReviewType } from '../store/slices/cities-slice';
 
 function ReviewItem({ review }: { review: ReviewType }): JSX.Element {
   // Создаем объект Date из строки
