@@ -1,10 +1,12 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getLayoutState } from '../utils/type';
 import { AppRoute, AuthorizationStatus } from './const';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/index.ts';
+import { memo } from 'react';
 
 function Header(): JSX.Element {
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const { linkClassName, shouldRenderUser } = getLayoutState(
     pathname as AppRoute
@@ -14,13 +16,19 @@ function Header(): JSX.Element {
     (state: RootState) => state.user.authorizationStatus
   );
   const authData = useSelector((state: RootState) => state.user.authData);
+  const allOffers = useSelector((state: RootState) => state.cities.allOffers);
+
+  const favoritesCount = allOffers.filter((item) => item.isFavorite).length;
 
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className={`header__logo-link${linkClassName}`} href="/">
+            <Link
+              className={`header__logo-link${linkClassName}`}
+              to={AppRoute.Root}
+            >
               <img
                 className="header__logo"
                 src="img/logo.svg"
@@ -28,7 +36,7 @@ function Header(): JSX.Element {
                 width="81"
                 height="41"
               />
-            </a>
+            </Link>
           </div>
           {shouldRenderUser ? (
             <nav className="header__nav">
@@ -44,7 +52,15 @@ function Header(): JSX.Element {
                         <span className="header__user-name user__name">
                           {authData?.email || ''}
                         </span>
-                        <span className="header__favorite-count">3</span>
+                        <span
+                          className="header__favorite-count"
+                          onClick={(evt) => {
+                            evt.preventDefault();
+                            navigate('favorite');
+                          }}
+                        >
+                          {favoritesCount}
+                        </span>
                       </>
                     ) : (
                       <span className="header__login">Sign in</span>
@@ -73,4 +89,6 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+const MemorizedHeader = memo(Header);
+
+export default MemorizedHeader;

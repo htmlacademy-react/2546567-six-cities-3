@@ -7,9 +7,11 @@ import {
 } from '../../utils/type';
 import { CITIES, CitiesEnum, RequestStatus } from '../../components/const';
 import {
+  changeFavoriteStatus,
   fetchAllOffers,
   fetchComments,
   fetchCurrentOffer,
+  fetchFavorites,
   fetchNearbyOffers,
   sendComment,
 } from '../middleware/cities-thunk';
@@ -47,6 +49,7 @@ export interface CitiesState {
   currentOffer: CurrentOfferType | null;
   nearbyOffers: OffersType[];
   comments: ReviewType[];
+  favorites: OffersType[];
 }
 
 // изначальное состояние
@@ -58,6 +61,7 @@ const initialState: CitiesState = {
   currentOffer: null,
   nearbyOffers: [],
   comments: [],
+  favorites: [],
 };
 
 // хранилище
@@ -136,6 +140,49 @@ const citiesSlice = createSlice({
         state.comments = [...state.comments, action.payload];
       })
       .addCase(sendComment.rejected, (state) => {
+        state.status = RequestStatus.Failed;
+      })
+
+      .addCase(changeFavoriteStatus.pending, (state) => {
+        state.status = RequestStatus.Loading;
+      })
+      .addCase(
+        changeFavoriteStatus.fulfilled,
+        (state, action: PayloadAction<OffersType>) => {
+          state.status = RequestStatus.Success;
+          const updatedOffer = action.payload;
+
+          // Обновляем все места, где может находиться офер
+          const updateFn = (item: OffersType) =>
+            item.id === updatedOffer.id ? updatedOffer : item;
+
+          state.currentCity.offers = state.currentCity.offers.map(updateFn);
+          state.allOffers = state.allOffers.map(updateFn);
+          state.nearbyOffers = state.nearbyOffers.map(updateFn);
+
+          if (state.currentOffer?.id === updatedOffer.id) {
+            state.currentOffer = {
+              ...state.currentOffer,
+              isFavorite: updatedOffer.isFavorite,
+            };
+          }
+        }
+      )
+      .addCase(changeFavoriteStatus.rejected, (state) => {
+        state.status = RequestStatus.Failed;
+      })
+
+      .addCase(fetchFavorites.pending, (state) => {
+        state.status = RequestStatus.Loading;
+      })
+      .addCase(
+        fetchFavorites.fulfilled,
+        (state, action: PayloadAction<OffersType[]>) => {
+          state.status = RequestStatus.Success;
+          state.favorites = action.payload;
+        }
+      )
+      .addCase(fetchFavorites.rejected, (state) => {
         state.status = RequestStatus.Failed;
       }),
 });

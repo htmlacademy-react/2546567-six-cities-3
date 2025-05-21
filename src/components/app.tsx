@@ -1,5 +1,5 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import FavoritePage from '../pages/favorite-page/favorite-page';
+import FavoritePage from '../pages/favorite-page/favorites-page.tsx';
 import LoginPage from '../pages/login-page/login-page';
 import MainPage from '../pages/main-page/main-page';
 
@@ -9,8 +9,7 @@ import PrivateRoute from './private-route';
 import Layout from './layout/layout';
 import OfferPage from '../pages/offers-page/offer-page';
 import { useEffect } from 'react';
-import { RootState, useAppDispatch } from '../store/index.ts';
-import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../store/index.ts';
 import { fetchLogin } from '../store/middleware/user-thunk.ts';
 
 function App() {
@@ -21,10 +20,6 @@ function App() {
     dispatch(fetchLogin());
   }, [dispatch]);
 
-  const authorizationStatus = useSelector(
-    (state: RootState) => state.user.authorizationStatus
-  );
-
   return (
     <BrowserRouter>
       <Routes>
@@ -33,7 +28,7 @@ function App() {
           <Route
             path={AppRoute.Favorite}
             element={
-              <PrivateRoute authorizationStatus={authorizationStatus}>
+              <PrivateRoute>
                 <FavoritePage />
               </PrivateRoute>
             }

@@ -31,6 +31,7 @@ export type OffersType = {
   location: TLocationCoordinates;
   price: number;
   rating: number;
+  type: string;
 };
 
 export type UserInfo = {
