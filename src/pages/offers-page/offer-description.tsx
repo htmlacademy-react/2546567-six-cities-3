@@ -1,4 +1,6 @@
 import Loading from '../../components/loading';
+import { useAppDispatch } from '../../store';
+import { changeFavoriteStatus } from '../../store/middleware/cities-thunk';
 import { CurrentOfferType } from '../../utils/type';
 
 type OfferDescriptionProps = {
@@ -8,6 +10,7 @@ type OfferDescriptionProps = {
 function OfferDescription({
   currentOffer,
 }: OfferDescriptionProps): JSX.Element {
+  const dispatch = useAppDispatch();
   if (!currentOffer) {
     return <Loading />;
   }
@@ -16,7 +19,19 @@ function OfferDescription({
     <>
       <div className="offer__name-wrapper">
         <h1 className="offer__name">{currentOffer.title}</h1>
-        <button className="offer__bookmark-button button" type="button">
+        <button
+          className={`offer__bookmark-button ${
+            currentOffer.isFavorite ? 'offer__bookmark-button--active' : ''
+          } button`}
+          type="button"
+          onClick={() => {
+            const payload = {
+              offerId: currentOffer.id,
+              status: currentOffer.isFavorite ? 0 : 1,
+            };
+            dispatch(changeFavoriteStatus(payload));
+          }}
+        >
           <svg className="offer__bookmark-icon" width="31" height="33">
             <use xlinkHref="#icon-bookmark"></use>
           </svg>

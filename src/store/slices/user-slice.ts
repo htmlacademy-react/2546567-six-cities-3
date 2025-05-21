@@ -18,6 +18,8 @@ export type UserState = {
   authorizationStatus: AuthorizationStatus;
   authData: AuthResponse | null;
   loading: RequestStatus;
+  tryAuthLoading: RequestStatus;
+  isAuthCheckCompleted: boolean;
 };
 
 export type AuthPayload = {
@@ -31,6 +33,8 @@ const initialState: UserState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   authData: null,
   loading: RequestStatus.Idle,
+  tryAuthLoading: RequestStatus.Idle,
+  isAuthCheckCompleted: false,
 };
 
 // хранилище
@@ -62,19 +66,22 @@ const userSlice = createSlice({
         state.loading = RequestStatus.Failed;
       })
       .addCase(tryAuth.pending, (state) => {
-        state.loading = RequestStatus.Loading;
+        state.tryAuthLoading = RequestStatus.Loading;
+        state.isAuthCheckCompleted = false;
       })
       .addCase(
         tryAuth.fulfilled,
         (state, action: PayloadAction<AuthResponse>) => {
-          state.loading = RequestStatus.Success;
+          state.tryAuthLoading = RequestStatus.Success;
           localStorage.setItem(AUTH_TOKEN_KEY, action.payload.token);
           state.authData = action.payload;
           state.authorizationStatus = AuthorizationStatus.Auth;
+          state.isAuthCheckCompleted = true;
         }
       )
       .addCase(tryAuth.rejected, (state) => {
-        state.loading = RequestStatus.Failed;
+        state.tryAuthLoading = RequestStatus.Failed;
+        state.isAuthCheckCompleted = true;
       }),
 });
 

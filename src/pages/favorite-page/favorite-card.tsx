@@ -1,3 +1,7 @@
+import { getRating } from '../../mocks/mocks';
+import { useAppDispatch } from '../../store';
+import { changeFavoriteStatus } from '../../store/middleware/cities-thunk';
+
 import { OffersType } from '../../utils/type';
 
 type FavoriteCardPropsType = {
@@ -5,6 +9,7 @@ type FavoriteCardPropsType = {
 };
 
 function FavoriteCard({ offer }: FavoriteCardPropsType): JSX.Element {
+  const dispatch = useAppDispatch();
   return (
     <article className="favorites__card place-card" key={offer.id}>
       {offer.premiumMark === true && (
@@ -32,6 +37,13 @@ function FavoriteCard({ offer }: FavoriteCardPropsType): JSX.Element {
           <button
             className="place-card__bookmark-button place-card__bookmark-button--active button"
             type="button"
+            onClick={() => {
+              const payload = {
+                offerId: offer.id,
+                status: offer.isFavorite ? 0 : 1,
+              };
+              dispatch(changeFavoriteStatus(payload));
+            }}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
@@ -41,14 +53,14 @@ function FavoriteCard({ offer }: FavoriteCardPropsType): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            {/* <span style={{ width: getRating(offer.rating) }}></span> */}
+            <span style={{ width: getRating(offer.rating) }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <a href="#">{offer.title}</a>
         </h2>
-        <p className="place-card__type">{offer.description.placeCardType}</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );

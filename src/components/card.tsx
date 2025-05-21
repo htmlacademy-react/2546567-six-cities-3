@@ -2,15 +2,17 @@ import { Link } from 'react-router-dom';
 import { OffersType } from '../utils/type';
 import { AppRoute } from './const';
 import { setSelectedPoint } from '../store/slices/cities-slice';
-import { useDispatch } from 'react-redux';
 import { getRating } from '../mocks/mocks';
+import { changeFavoriteStatus } from '../store/middleware/cities-thunk';
+import { useAppDispatch } from '../store';
+import { memo } from 'react';
 
 type CardPropsType = {
   offer: OffersType;
 };
 
 function Card({ offer }: CardPropsType): JSX.Element {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <article
@@ -44,7 +46,16 @@ function Card({ offer }: CardPropsType): JSX.Element {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
-            className="place-card__bookmark-button place-card__bookmark-button--active button"
+            className={`place-card__bookmark-button ${
+              offer.isFavorite ? 'place-card__bookmark-button--active' : ''
+            } button`}
+            onClick={() => {
+              const payload = {
+                offerId: offer.id,
+                status: offer.isFavorite ? 0 : 1,
+              };
+              dispatch(changeFavoriteStatus(payload));
+            }}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -67,4 +78,6 @@ function Card({ offer }: CardPropsType): JSX.Element {
     </article>
   );
 }
-export default Card;
+
+const MemorizedCard = memo(Card);
+export default MemorizedCard;

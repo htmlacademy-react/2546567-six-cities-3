@@ -71,3 +71,45 @@ export const sendComment = createAsyncThunk(
     }
   }
 );
+
+type FavoriteStatusPayload = {
+  offerId: string;
+  status: number;
+};
+
+export const fetchFavorites = createAsyncThunk(
+  'favorite/fetchFavorites',
+  async (_, { extra, rejectWithValue }) => {
+    try {
+      const { data } = await (extra as typeof API).get<OffersType[]>(
+        '/favorite'
+      );
+      return data;
+    } catch (err) {
+      return rejectWithValue('Failed to load favorites');
+    }
+  }
+);
+
+export const changeFavoriteStatus = createAsyncThunk(
+  'favorite/changeFavoriteStatus',
+  async (
+    payload: FavoriteStatusPayload,
+    { extra, rejectWithValue, dispatch }
+  ) => {
+    try {
+      const { data } = await (extra as typeof API).post<OffersType>(
+        `/favorite/${payload.offerId}/${payload.status}`,
+        {
+          offerId: payload.offerId,
+          status: Number(payload.status),
+        }
+      );
+      // Вызываем fetchFavorites после успешного изменения статуса
+      dispatch(fetchFavorites());
+      return data;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);

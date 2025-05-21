@@ -82,14 +82,18 @@ function OfferPage() {
                 <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
                   <img
                     className="offer__avatar user__avatar"
-                    src="img/avatar-angelina.jpg"
+                    src={currentOffer.host.avatarUrl}
                     width="74"
                     height="74"
                     alt="Host avatar"
                   />
                 </div>
-                <span className="offer__user-name">Angelina</span>
-                <span className="offer__user-status">Pro</span>
+                <span className="offer__user-name">
+                  {currentOffer.host.name}
+                </span>
+                <span className="offer__user-status">
+                  {currentOffer.host.isPro ? 'Pro' : ''}
+                </span>
               </div>
               <OfferHost />
             </div>
