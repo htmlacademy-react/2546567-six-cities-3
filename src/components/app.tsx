@@ -9,11 +9,16 @@ import PrivateRoute from './private-route';
 import Layout from './layout/layout';
 import OfferPage from '../pages/offers-page/offer-page';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../store/index.ts';
+import { RootState, useAppDispatch } from '../store/index.ts';
 import { fetchLogin } from '../store/middleware/user-thunk.ts';
+import { useSelector } from 'react-redux';
 
 function App() {
   const dispatch = useAppDispatch();
+
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.user.authorizationStatus
+  );
 
   // Выполняем запрос при монтировании компонента
   useEffect(() => {
@@ -28,7 +33,7 @@ function App() {
           <Route
             path={AppRoute.Favorite}
             element={
-              <PrivateRoute>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <FavoritePage />
               </PrivateRoute>
             }
