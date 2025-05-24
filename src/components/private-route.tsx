@@ -1,19 +1,15 @@
 import { Navigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../mocks/const';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
 
 type PrivateRouteProps = {
   children: JSX.Element;
+  authorizationStatus: AuthorizationStatus;
 };
 
 function PrivateRoute(props: PrivateRouteProps): JSX.Element {
   const { children } = props;
-  const authorizationStatus = useSelector(
-    (state: RootState) => state.user.authorizationStatus
-  );
 
-  return authorizationStatus === AuthorizationStatus.Auth ? (
+  return props.authorizationStatus === AuthorizationStatus.Auth ? (
     children
   ) : (
     <Navigate to={AppRoute.Login} />
