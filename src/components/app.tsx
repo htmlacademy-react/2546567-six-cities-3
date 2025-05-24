@@ -3,7 +3,7 @@ import FavoritePage from '../pages/favorite-page/favorites-page.tsx';
 import LoginPage from '../pages/login-page/login-page';
 import MainPage from '../pages/main-page/main-page';
 
-import { AppRoute } from './const';
+import { AppRoute } from '../mocks/const.ts';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import PrivateRoute from './private-route';
 import Layout from './layout/layout';

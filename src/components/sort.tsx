@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { placesOption, SortOption } from './const';
+import { placesOption, SortOption } from '../mocks/const';
 import { useBoolean } from '../utils/boolean';
 import classNames from 'classnames';
 

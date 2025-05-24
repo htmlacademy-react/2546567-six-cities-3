@@ -14,7 +14,7 @@ function FavoriteCard({ offer }: FavoriteCardPropsType): JSX.Element {
     <article className="favorites__card place-card" key={offer.id}>
       {offer.premiumMark === true && (
         <div className="place-card__mark">
-          <span>Premium</span>
+          <span>{offer.premiumMark ? 'Premium' : ''}</span>
         </div>
       )}
       <div className="favorites__image-wrapper place-card__image-wrapper">

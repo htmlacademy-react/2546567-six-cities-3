@@ -1,3 +1,3 @@
-import { AuthorizationStatus } from '../components/const';
+import { AuthorizationStatus } from './const';
 
 export const getAuthorizationStatus = () => AuthorizationStatus.Auth;

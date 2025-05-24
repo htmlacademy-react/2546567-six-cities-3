@@ -72,7 +72,7 @@ export const sendComment = createAsyncThunk(
   }
 );
 
-type FavoriteStatusPayload = {
+export type FavoriteStatusPayload = {
   offerId: string;
   status: number;
 };

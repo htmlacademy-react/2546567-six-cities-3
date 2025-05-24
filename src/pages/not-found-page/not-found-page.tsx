@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 function NotFoundPage(): JSX.Element {
   return (
-    <div className={styles.wrapper404}>
+    <div className={styles.wrapper404} data-testid="not-found-page">
       <h1 className={styles.wrapperTitle}>404.Page not Found</h1>
       <Link className={styles.link} to={'/'}>
         --- На главную ---

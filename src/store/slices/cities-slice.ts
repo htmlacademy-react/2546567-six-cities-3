@@ -5,7 +5,7 @@ import {
   TLocationCoordinates,
   UserInfo,
 } from '../../utils/type';
-import { CITIES, CitiesEnum, RequestStatus } from '../../components/const';
+import { CITIES, CitiesEnum, RequestStatus } from '../../mocks/const';
 import {
   changeFavoriteStatus,
   fetchAllOffers,
@@ -53,7 +53,7 @@ export interface CitiesState {
 }
 
 // изначальное состояние
-const initialState: CitiesState = {
+export const INITIAL_CITIES_STATE: CitiesState = {
   currentCity: DEFAULT_CITY,
   allOffers: [],
   selectedPoint: null,
@@ -65,9 +65,9 @@ const initialState: CitiesState = {
 };
 
 // хранилище
-const citiesSlice = createSlice({
+export const citiesSlice = createSlice({
   name: 'cities',
-  initialState,
+  initialState: INITIAL_CITIES_STATE,
   reducers: {
     setCurrentCity: (state, action: PayloadAction<TCity>) => {
       const currentOffers = state.allOffers.filter(

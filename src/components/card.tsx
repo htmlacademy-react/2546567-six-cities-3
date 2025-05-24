@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { OffersType } from '../utils/type';
-import { AppRoute } from './const';
+import { AppRoute } from '../mocks/const';
 import { setSelectedPoint } from '../store/slices/cities-slice';
 import { getRating } from '../mocks/mocks';
 import { changeFavoriteStatus } from '../store/middleware/cities-thunk';
