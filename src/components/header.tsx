@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getLayoutState } from '../utils/type';
-import { AppRoute, AuthorizationStatus } from './const';
+import { AppRoute, AuthorizationStatus } from '../mocks/const.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/index.ts';
 import { memo } from 'react';

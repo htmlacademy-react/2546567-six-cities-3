@@ -1,4 +1,4 @@
-import { AppRoute } from '../components/const';
+import { AppRoute } from '../mocks/const';
 import { TCity } from '../store/slices/cities-slice';
 
 export type MainPageProps = {
