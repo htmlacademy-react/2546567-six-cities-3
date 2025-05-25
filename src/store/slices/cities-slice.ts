@@ -5,7 +5,7 @@ import {
   TLocationCoordinates,
   UserInfo,
 } from '../../utils/type';
-import { CITIES, CitiesEnum, RequestStatus } from '../../mocks/const';
+import { CITIES, CitiesEnum, RequestStatus } from '../../utils/const';
 import {
   changeFavoriteStatus,
   fetchAllOffers,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CitiesEnum } from '../../mocks/const';
+import { CitiesEnum } from '../../utils/const';
 import {
   citiesSlice,
   CitiesState,

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './private-route';
-import { AppRoute, AuthorizationStatus } from '../mocks/const';
+import { AppRoute, AuthorizationStatus } from '../utils/const';
 import { describe, expect, it } from 'vitest';
 
 describe('Component: PrivateRoute', () => {

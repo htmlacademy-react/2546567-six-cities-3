@@ -1,6 +1,6 @@
-import { getRating } from '../../mocks/mocks';
 import { useAppDispatch } from '../../store';
 import { changeFavoriteStatus } from '../../store/middleware/cities-thunk';
+import { getRating } from '../../utils/helpers';
 
 import { OffersType } from '../../utils/type';
 

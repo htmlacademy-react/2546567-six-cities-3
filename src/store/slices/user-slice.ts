@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthorizationStatus, RequestStatus } from '../../mocks/const';
+import { AuthorizationStatus, RequestStatus } from '../../utils/const';
 import { UserInfo } from '../../utils/type';
 import { fetchLogin, tryAuth } from '../middleware/user-thunk';
 import { AUTH_TOKEN_KEY } from '../../services/token';
@@ -27,7 +27,7 @@ export type AuthPayload = {
   password: string;
 };
 
-export const initialState: UserState = {
+export const INITIAL_USER_STATE: UserState = {
   info: null,
   requestStatus: RequestStatus.Idle,
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -40,7 +40,7 @@ export const initialState: UserState = {
 // хранилище
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: INITIAL_USER_STATE,
   reducers: {
     setAuthorizationStatus: (
       state,

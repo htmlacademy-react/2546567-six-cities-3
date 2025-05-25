@@ -8,7 +8,7 @@ import MapComponent from '../../components/map-component';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../store/index.ts';
 import { useEffect } from 'react';
-import { AuthorizationStatus } from '../../mocks/const.ts';
+import { AuthorizationStatus } from '../../utils/const.ts';
 import OfferReviewForm from '../../components/offer-review-form.tsx';
 import {
   fetchComments,

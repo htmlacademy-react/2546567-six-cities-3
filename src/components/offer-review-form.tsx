@@ -1,5 +1,5 @@
 import { Fragment, ReactEventHandler, useCallback, useState } from 'react';
-import { rating } from '../mocks/const.ts';
+import { rating } from '../utils/const.ts';
 import { useAppDispatch } from '../store/index.ts';
 import { NewComment } from '../store/slices/cities-slice.ts';
 import { sendComment } from '../store/middleware/cities-thunk.ts';

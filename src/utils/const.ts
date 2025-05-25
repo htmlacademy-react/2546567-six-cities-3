@@ -39,7 +39,6 @@ export const placesOption: string[] = [
   'Price: high to low',
   'Top rated first',
 ];
-// satisfies Record<SortOption, string>;
 
 export enum SortOption {
   Popular = 0,

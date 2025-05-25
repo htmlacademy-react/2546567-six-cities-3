@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import '../../styles.css';
 import { RootState } from '../../store';
-import { RequestStatus } from '../../mocks/const';
+import { RequestStatus } from '../../utils/const';
 import Loading from '../../components/loading';
 import CardList from './card-list';
 import MapComponent from '../../components/map-component';
