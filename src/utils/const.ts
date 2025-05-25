@@ -12,8 +12,8 @@ export enum CitiesEnum {
 export enum AppRoute {
   Root = '/',
   Login = '/login',
-  Favorite = '/favorite',
-  Offers = '/offers',
+  Favorites = '/favorites',
+  Offer = '/offer',
 }
 
 export enum AuthorizationStatus {
@@ -25,7 +25,7 @@ export enum AuthorizationStatus {
 export const rating = [
   { value: 5, label: 'perfect' },
   { value: 4, label: 'good' },
-  { value: 3, label: 'hot bad' },
+  { value: 3, label: 'not bad' },
   { value: 2, label: 'badly' },
   { value: 1, label: 'terribly' },
 ];
@@ -69,13 +69,13 @@ export const CITIES: TCity[] = [
     offers: [],
   },
   {
-    location: { latitude: 51.225402, longitude: 6.776314, zoom: 13 },
-    name: CitiesEnum.Dusseldorf,
+    location: { latitude: 53.550341, longitude: 10.000654, zoom: 13 },
+    name: CitiesEnum.Hamburg,
     offers: [],
   },
   {
-    location: { latitude: 53.550341, longitude: 10.000654, zoom: 13 },
-    name: CitiesEnum.Hamburg,
+    location: { latitude: 51.225402, longitude: 6.776314, zoom: 13 },
+    name: CitiesEnum.Dusseldorf,
     offers: [],
   },
 ];

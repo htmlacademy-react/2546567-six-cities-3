@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus, RequestStatus } from '../../utils/const';
 import { UserInfo } from '../../utils/type';
 import { fetchLogin, tryAuth } from '../middleware/user-thunk';
-import { AUTH_TOKEN_KEY } from '../../services/token';
+import { saveToken } from '../../services/token';
 
 export type AuthResponse = {
   avatarUrl: string;
@@ -20,11 +20,13 @@ export type UserState = {
   loading: RequestStatus;
   tryAuthLoading: RequestStatus;
   isAuthCheckCompleted: boolean;
+  error: string | null;
 };
 
 export type AuthPayload = {
   email: string;
   password: string;
+  token?: string;
 };
 
 export const INITIAL_USER_STATE: UserState = {
@@ -35,6 +37,7 @@ export const INITIAL_USER_STATE: UserState = {
   loading: RequestStatus.Idle,
   tryAuthLoading: RequestStatus.Idle,
   isAuthCheckCompleted: false,
+  error: null,
 };
 
 // хранилище
@@ -54,18 +57,22 @@ export const userSlice = createSlice({
       .addCase(fetchLogin.pending, (state) => {
         state.loading = RequestStatus.Loading;
       })
-      .addCase(fetchLogin.fulfilled, (state, action) => {
-        state.loading = RequestStatus.Success;
-
-        state.authData = action.payload;
-        state.authorizationStatus = AuthorizationStatus.Auth;
-        state.authorizationStatus = AuthorizationStatus.Auth;
-      })
+      .addCase(
+        fetchLogin.fulfilled,
+        (state, action: PayloadAction<AuthResponse>) => {
+          state.loading = RequestStatus.Success;
+          saveToken(action.payload.token);
+          state.authData = action.payload;
+          state.authorizationStatus = AuthorizationStatus.Auth;
+          state.isAuthCheckCompleted = true;
+        }
+      )
       .addCase(fetchLogin.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
         state.loading = RequestStatus.Failed;
       })
       .addCase(tryAuth.pending, (state) => {
+        state.error = null;
         state.tryAuthLoading = RequestStatus.Loading;
         state.isAuthCheckCompleted = false;
       })
@@ -73,7 +80,7 @@ export const userSlice = createSlice({
         tryAuth.fulfilled,
         (state, action: PayloadAction<AuthResponse>) => {
           state.tryAuthLoading = RequestStatus.Success;
-          localStorage.setItem(AUTH_TOKEN_KEY, action.payload.token);
+          saveToken(action.payload.token);
           state.authData = action.payload;
           state.authorizationStatus = AuthorizationStatus.Auth;
           state.isAuthCheckCompleted = true;
@@ -82,6 +89,7 @@ export const userSlice = createSlice({
       .addCase(tryAuth.rejected, (state) => {
         state.tryAuthLoading = RequestStatus.Failed;
         state.isAuthCheckCompleted = true;
+        state.error = 'ошибка при попытке авторизации';
       }),
 });
 

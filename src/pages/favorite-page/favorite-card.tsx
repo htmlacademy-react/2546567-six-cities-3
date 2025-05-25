@@ -12,9 +12,9 @@ function FavoriteCard({ offer }: FavoriteCardPropsType): JSX.Element {
   const dispatch = useAppDispatch();
   return (
     <article className="favorites__card place-card" key={offer.id}>
-      {offer.premiumMark === true && (
+      {offer.isPremium === true && (
         <div className="place-card__mark">
-          <span>{offer.premiumMark ? 'Premium' : ''}</span>
+          <span>{offer.isPremium ? 'Premium' : ''}</span>
         </div>
       )}
       <div className="favorites__image-wrapper place-card__image-wrapper">

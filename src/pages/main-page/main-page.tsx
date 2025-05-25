@@ -17,11 +17,7 @@ function MainPage(): JSX.Element {
 
   const hasOffers = currentCity.offers.length > 0;
 
-  return (
-    <main className="page__main page__main--index">
-      {hasOffers ? <MainContent /> : <MainEmpty />}
-    </main>
-  );
+  return hasOffers ? <MainContent /> : <MainEmpty />;
 }
 
 export default MainPage;

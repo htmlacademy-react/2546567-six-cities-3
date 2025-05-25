@@ -16,7 +16,7 @@ function MainContent(): JSX.Element {
   );
   const status = useSelector((state: RootState) => state.cities.status);
   return (
-    <>
+    <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <LocationListMain />
@@ -42,7 +42,7 @@ function MainContent(): JSX.Element {
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
 

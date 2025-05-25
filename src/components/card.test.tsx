@@ -24,7 +24,7 @@ describe('Component: Card', () => {
     price: 100,
     rating: 4,
     isFavorite: false,
-    premiumMark: true,
+    isPremium: true,
     description: {
       placeCardType: 'Apartment',
       maxAdults: 0,
@@ -65,7 +65,7 @@ describe('Component: Card', () => {
     expect(screen.getByRole('img')).toHaveAttribute('src', 'test-image.jpg');
     expect(screen.getByRole('link')).toHaveAttribute(
       'href',
-      `${AppRoute.Offers}/1`
+      `${AppRoute.Offer}/1`
     );
   });
 

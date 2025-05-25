@@ -1,9 +1,15 @@
+import { useSelector } from 'react-redux';
 import LocationListMain from '../../components/location-list-main';
 import '../../styles.css';
+import { RootState } from '../../store';
 
 function MainEmpty(): JSX.Element {
+  const currentCity = useSelector(
+    (state: RootState) => state.cities.currentCity
+  );
+
   return (
-    <>
+    <main className="page__main page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <LocationListMain />
@@ -14,15 +20,14 @@ function MainEmpty(): JSX.Element {
             <div className="cities__status-wrapper tabs__content">
               <b className="cities__status">No places to stay available</b>
               <p className="cities__status-description">
-                We could not find any property available at the moment in
-                Dusseldorf
+                {`We could not find any property available at the moment in ${currentCity.name}`}
               </p>
             </div>
           </section>
           <div className="cities__right-section"></div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
 

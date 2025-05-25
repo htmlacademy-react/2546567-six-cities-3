@@ -8,7 +8,6 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: '/',
   plugins: [react()],
-  //TODO вернуть, когда понадобится, сейчас мешает писать тесты
   test: {
     globals: true,
     environment: 'jsdom',

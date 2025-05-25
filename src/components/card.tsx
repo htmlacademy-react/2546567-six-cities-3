@@ -1,31 +1,46 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { OffersType } from '../utils/type';
-import { AppRoute } from '../utils/const';
+import { AppRoute, AuthorizationStatus } from '../utils/const';
 import { setSelectedPoint } from '../store/slices/cities-slice';
 import { changeFavoriteStatus } from '../store/middleware/cities-thunk';
-import { useAppDispatch } from '../store';
+import { RootState, useAppDispatch } from '../store';
 import { memo } from 'react';
 import { getRating } from '../utils/helpers';
+import { useSelector } from 'react-redux';
 
 type CardPropsType = {
   offer: OffersType;
+  isNearCard?: boolean;
 };
 
-function Card({ offer }: CardPropsType): JSX.Element {
+function Card({ offer, isNearCard }: CardPropsType): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.user.authorizationStatus
+  );
+
+  const currentOffer = useSelector(
+    (state: RootState) => state.cities.currentOffer
+  );
 
   return (
     <article
-      className="cities__card place-card"
+      className={`${
+        isNearCard ? 'near-places__card' : 'cities__card'
+      } place-card`}
       onMouseEnter={() => {
         dispatch(setSelectedPoint(offer));
       }}
       onMouseLeave={() => {
-        dispatch(setSelectedPoint(null));
+        dispatch(
+          setSelectedPoint((currentOffer as unknown as OffersType) || null)
+        );
       }}
       key={offer.id}
     >
-      {offer.premiumMark === true && (
+      {offer.isPremium === true && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -54,7 +69,11 @@ function Card({ offer }: CardPropsType): JSX.Element {
                 offerId: offer.id,
                 status: offer.isFavorite ? 0 : 1,
               };
-              dispatch(changeFavoriteStatus(payload));
+              if (authorizationStatus === AuthorizationStatus.Auth) {
+                dispatch(changeFavoriteStatus(payload));
+              } else {
+                navigate(AppRoute.Login);
+              }
             }}
             type="button"
           >
@@ -71,9 +90,9 @@ function Card({ offer }: CardPropsType): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offers}/${offer.id}`}>{offer.title}</Link>
+          <Link to={`${AppRoute.Offer}/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.description?.placeCardType}</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );

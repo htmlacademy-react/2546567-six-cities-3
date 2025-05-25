@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthPayload, AuthResponse } from '../slices/user-slice';
 import { API } from '../../services/api';
+import { saveToken } from '../../services/token';
 
 export const fetchLogin = createAsyncThunk(
   'login/fetchLogin',
@@ -17,9 +18,10 @@ export const fetchLogin = createAsyncThunk(
 export const tryAuth = createAsyncThunk(
   'login/tryAuth',
   async (payload: AuthPayload, { rejectWithValue }) => {
-    // Указываем payload с типом
     try {
       const { data } = await API.post<AuthResponse>('/login', payload);
+      // Сохраняем токен после успешной авторизации
+      saveToken(data.token); // Добавьте эту функцию в модуль token.ts
       return data;
     } catch (err) {
       return rejectWithValue('Failed to try auth');

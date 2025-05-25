@@ -35,7 +35,7 @@ const mockOffer: OffersType = {
     maxAdults: 2,
     bedrooms: 1,
   },
-  premiumMark: false,
+  isPremium: false,
   isFavorite: false,
   city: {
     name: CitiesEnum.Paris,

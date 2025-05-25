@@ -59,7 +59,7 @@ describe('Component: App', () => {
   });
 
   it('should render OfferPage for /offer/:id route', () => {
-    setupTest(`${AppRoute.Offers}/123`);
+    setupTest(`${AppRoute.Offer}/123`);
     expect(screen.getByText('Offer page')).toBeInTheDocument();
   });
 
