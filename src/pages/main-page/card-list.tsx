@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import Card from '../../components/card';
 
-import { SortOption } from '../../mocks/const.ts';
+import { SortOption } from '../../utils/const.ts';
 import Sort from '../../components/sort';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index.ts';

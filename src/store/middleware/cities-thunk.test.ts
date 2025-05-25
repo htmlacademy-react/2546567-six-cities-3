@@ -10,7 +10,7 @@ import {
 import { API } from '../../services/api';
 import type { NewComment, ReviewType } from '../slices/cities-slice';
 import { CurrentOfferType, OffersType } from '../../utils/type';
-import { CitiesEnum } from '../../mocks/const';
+import { CitiesEnum } from '../../utils/const';
 
 // Мокаем API с правильной типизацией
 vi.mock('../../services/api', () => ({

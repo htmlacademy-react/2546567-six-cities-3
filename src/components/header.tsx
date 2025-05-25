@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getLayoutState } from '../utils/type';
-import { AppRoute, AuthorizationStatus } from '../mocks/const.ts';
+import { AppRoute, AuthorizationStatus } from '../utils/const.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/index.ts';
 import { memo } from 'react';
@@ -18,7 +18,9 @@ function Header(): JSX.Element {
   const authData = useSelector((state: RootState) => state.user.authData);
   const allOffers = useSelector((state: RootState) => state.cities.allOffers);
 
-  const favoritesCount = allOffers.filter((item) => item.isFavorite).length;
+  const favoritesCount = allOffers
+    ? allOffers.filter((item) => item.isFavorite).length
+    : 0;
 
   return (
     <header className="header">
@@ -58,6 +60,7 @@ function Header(): JSX.Element {
                             evt.preventDefault();
                             navigate('favorite');
                           }}
+                          data-testid="favorites-count"
                         >
                           {favoritesCount}
                         </span>

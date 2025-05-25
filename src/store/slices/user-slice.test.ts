@@ -1,35 +1,35 @@
 import { describe, expect, it } from 'vitest';
-import { AuthorizationStatus } from '../../mocks/const';
+import { AuthorizationStatus } from '../../utils/const';
 import {
   userSlice,
   UserState,
   setAuthorizationStatus,
-  initialState,
+  INITIAL_USER_STATE,
 } from './user-slice';
 
 describe('User slice', () => {
   it('should return initial state with empty action', () => {
     const emptyAction = { type: '' };
-    const result = userSlice.reducer(initialState, emptyAction);
+    const result = userSlice.reducer(INITIAL_USER_STATE, emptyAction);
 
-    expect(result).toEqual(initialState);
+    expect(result).toEqual(INITIAL_USER_STATE);
   });
 
   it('should return initial state with empty action and undefined', () => {
     const emptyAction = { type: '' };
     const result = userSlice.reducer(undefined, emptyAction);
 
-    expect(result).toEqual(initialState);
+    expect(result).toEqual(INITIAL_USER_STATE);
   });
 
   it('should set authorization status with setAuthorizationStatus action', () => {
     const newStatus = AuthorizationStatus.Auth;
     const expectedState: UserState = {
-      ...initialState,
+      ...INITIAL_USER_STATE,
       authorizationStatus: newStatus,
     };
     const result = userSlice.reducer(
-      initialState,
+      INITIAL_USER_STATE,
       setAuthorizationStatus(newStatus)
     );
 

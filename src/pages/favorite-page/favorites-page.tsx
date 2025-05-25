@@ -7,7 +7,7 @@ import { OffersType } from '../../utils/type.ts';
 import { useNavigate } from 'react-router-dom';
 import { setCurrentCity } from '../../store/slices/cities-slice.ts';
 import Footer from '../../components/footer.tsx';
-import { AuthorizationStatus, CITIES, CitiesEnum } from '../../mocks/const.ts';
+import { AuthorizationStatus, CITIES, CitiesEnum } from '../../utils/const.ts';
 import FavoritesEmpty from './favorites-empty.tsx';
 
 function FavoritePage() {

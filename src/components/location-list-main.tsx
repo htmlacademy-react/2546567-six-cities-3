@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { AppRoute, CITIES } from '../mocks/const.ts';
+import { AppRoute, CITIES } from '../utils/const.ts';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentCity } from '../store/slices/cities-slice.ts';

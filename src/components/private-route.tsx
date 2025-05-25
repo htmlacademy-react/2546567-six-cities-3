@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../mocks/const';
+import { AppRoute, AuthorizationStatus } from '../utils/const';
 
 type PrivateRouteProps = {
   children: JSX.Element;

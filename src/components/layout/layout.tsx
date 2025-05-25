@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { AppRoute } from '../../mocks/const';
+import { AppRoute } from '../../utils/const';
 import { getLayoutState } from '../../utils/type';
 
 import Header from '../header';

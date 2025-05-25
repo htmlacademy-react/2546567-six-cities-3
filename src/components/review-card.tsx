@@ -1,14 +1,9 @@
-import { getRating } from '../mocks/mocks';
 import { ReviewType } from '../store/slices/cities-slice';
+import { getRating } from '../utils/helpers';
 
 function ReviewItem({ review }: { review: ReviewType }): JSX.Element {
-  // Создаем объект Date из строки
   const reviewDate = new Date(review.date);
-
-  // Форматируем дату для атрибута dateTime (YYYY-MM-DD)
   const dateTimeString = reviewDate.toISOString().split('T')[0];
-
-  // Форматируем дату для отображения (Month YYYY)
   const displayDate = reviewDate.toLocaleString('en-US', {
     month: 'long',
     year: 'numeric',
@@ -31,7 +26,12 @@ function ReviewItem({ review }: { review: ReviewType }): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: getRating(review.rating) }}></span>
+            <span
+              style={{ width: getRating(review.rating) }}
+              data-testid="rating-stars"
+            >
+              {''}
+            </span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

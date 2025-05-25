@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { OffersType } from '../utils/type';
-import { AppRoute } from '../mocks/const';
+import { AppRoute } from '../utils/const';
 import { setSelectedPoint } from '../store/slices/cities-slice';
-import { getRating } from '../mocks/mocks';
 import { changeFavoriteStatus } from '../store/middleware/cities-thunk';
 import { useAppDispatch } from '../store';
 import { memo } from 'react';
+import { getRating } from '../utils/helpers';
 
 type CardPropsType = {
   offer: OffersType;

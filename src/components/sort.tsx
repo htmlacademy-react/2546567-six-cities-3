@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { placesOption, SortOption } from '../mocks/const';
+import { placesOption, SortOption } from '../utils/const';
 import { useBoolean } from '../utils/boolean';
 import classNames from 'classnames';
 
@@ -40,6 +40,7 @@ function Sort({ active, handleSort }: SortProps): JSX.Element {
         </svg>
       </span>
       <ul
+        role="list"
         className={classNames('places__options', 'places__options--custom', {
           'places__options--opened': isOn,
         })}

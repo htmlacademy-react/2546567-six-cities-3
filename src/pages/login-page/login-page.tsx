@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { RootState, useAppDispatch } from '../../store/index.ts';
 import { AuthPayload } from '../../store/slices/user-slice.ts';
 import { useSelector } from 'react-redux';
-import { AuthorizationStatus } from '../../mocks/const.ts';
+import { AuthorizationStatus } from '../../utils/const.ts';
 import { tryAuth } from '../../store/middleware/user-thunk.ts';
 
 function LoginPage() {
