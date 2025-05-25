@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Card from '../../components/card';
-import OfferGallery from '../favorite-page/offer-gallery';
+import OfferGallery from './offer-gallery.tsx';
 import OfferReviewsList from './offers-reviews-list';
-import OfferHost from './offer-host';
 import OfferDescription from './offer-description';
 import MapComponent from '../../components/map-component';
 import { useSelector } from 'react-redux';
@@ -15,6 +14,8 @@ import {
   fetchCurrentOffer,
   fetchNearbyOffers,
 } from '../../store/middleware/cities-thunk.ts';
+import { setSelectedPoint } from '../../store/slices/cities-slice.ts';
+import { OffersType } from '../../utils/type.ts';
 
 function OfferPage() {
   const dispatch = useAppDispatch();
@@ -45,6 +46,16 @@ function OfferPage() {
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
   useEffect(() => {
+    if (currentOffer) {
+      dispatch(setSelectedPoint(currentOffer as unknown as OffersType));
+    }
+
+    return () => {
+      dispatch(setSelectedPoint(null));
+    };
+  }, [currentOffer, dispatch]);
+
+  useEffect(() => {
     if (params.id) {
       dispatch(fetchCurrentOffer(params.id));
       dispatch(fetchNearbyOffers(params.id));
@@ -62,9 +73,11 @@ function OfferPage() {
         <OfferGallery pictures={currentOffer.images} />
         <div className="offer__container container">
           <div className="offer__wrapper">
-            <div className="offer__mark">
-              <span>Premium</span>
-            </div>
+            {currentOffer.isPremium && (
+              <div className="offer__mark">
+                <span>Premium</span>
+              </div>
+            )}
             <OfferDescription currentOffer={currentOffer} />
             <div className="offer__inside">
               <h2 className="offer__inside-title">What&apos;s inside</h2>
@@ -79,7 +92,11 @@ function OfferPage() {
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
               <div className="offer__host-user user">
-                <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+                <div
+                  className={`offer__avatar-wrapper user__avatar-wrapper ${
+                    currentOffer.host.isPro ? 'offer__avatar-wrapper--pro' : ''
+                  }`}
+                >
                   <img
                     className="offer__avatar user__avatar"
                     src={currentOffer.host.avatarUrl}
@@ -91,11 +108,16 @@ function OfferPage() {
                 <span className="offer__user-name">
                   {currentOffer.host.name}
                 </span>
-                <span className="offer__user-status">
-                  {currentOffer.host.isPro ? 'Pro' : ''}
-                </span>
+                {currentOffer.host.isPro && (
+                  <span className="offer__user-status">Pro</span>
+                )}
               </div>
-              <OfferHost />
+              <div className="offer__description">
+                <p className="offer__text">
+                  {`Regular ${currentCity.name} offer description`}
+                </p>
+                <p className="offer__text">{currentOffer.description}</p>
+              </div>
             </div>
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
@@ -116,7 +138,10 @@ function OfferPage() {
           className={'offer__map'}
           city={currentCity}
           selectedPoint={selectedPoint}
-          nearbyOffers={nearbyOffers}
+          nearbyOffers={[
+            currentOffer as unknown as OffersType,
+            ...nearbyOffers,
+          ]}
         />
       </section>
       <div className="container">

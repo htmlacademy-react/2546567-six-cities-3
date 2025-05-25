@@ -115,7 +115,7 @@ export const citiesSlice = createSlice({
       .addCase(fetchNearbyOffers.fulfilled, (state, action) => {
         state.status = RequestStatus.Success;
 
-        state.nearbyOffers = action.payload;
+        state.nearbyOffers = action.payload.slice(0, 3);
       })
       .addCase(fetchNearbyOffers.rejected, (state) => {
         state.status = RequestStatus.Failed;
@@ -137,7 +137,7 @@ export const citiesSlice = createSlice({
       })
       .addCase(sendComment.fulfilled, (state, action) => {
         state.status = RequestStatus.Success;
-        state.comments = [...state.comments, action.payload];
+        state.comments = [action.payload, ...state.comments];
       })
       .addCase(sendComment.rejected, (state) => {
         state.status = RequestStatus.Failed;

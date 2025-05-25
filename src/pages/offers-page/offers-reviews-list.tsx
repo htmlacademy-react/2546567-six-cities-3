@@ -3,7 +3,9 @@ import ReviewItem from '../../components/review-card';
 import { RootState } from '../../store/index.ts';
 
 function OfferReviewsList(): JSX.Element {
-  const comments = useSelector((state: RootState) => state.cities.comments);
+  const comments = useSelector(
+    (state: RootState) => state.cities.comments
+  ).slice(0, 10);
 
   return (
     <ul className="reviews__list">

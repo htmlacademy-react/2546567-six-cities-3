@@ -31,7 +31,11 @@ function OfferReviewForm({ id }: OfferReviewProps): JSX.Element {
       evt.preventDefault();
 
       // Проверяем валидность формы перед отправкой
-      if (review.review.length < 50 || review.rating === 0) {
+      if (
+        review.review.length < 50 ||
+        review.rating === 0 ||
+        review.review.length > 300
+      ) {
         return;
       }
 

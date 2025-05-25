@@ -78,12 +78,10 @@ export type FavoriteStatusPayload = {
 };
 
 export const fetchFavorites = createAsyncThunk(
-  'favorite/fetchFavorites',
-  async (_, { extra, rejectWithValue }) => {
+  'cities/fetchFavorites',
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await (extra as typeof API).get<OffersType[]>(
-        '/favorite'
-      );
+      const { data } = await API.get<OffersType[]>('/favorite');
       return data;
     } catch (err) {
       return rejectWithValue('Failed to load favorites');

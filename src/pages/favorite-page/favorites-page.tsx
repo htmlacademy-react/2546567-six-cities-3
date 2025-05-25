@@ -7,8 +7,9 @@ import { OffersType } from '../../utils/type.ts';
 import { useNavigate } from 'react-router-dom';
 import { setCurrentCity } from '../../store/slices/cities-slice.ts';
 import Footer from '../../components/footer.tsx';
-import { AuthorizationStatus, CITIES, CitiesEnum } from '../../utils/const.ts';
 import FavoritesEmpty from './favorites-empty.tsx';
+import { AuthorizationStatus, CITIES, CitiesEnum } from '../../utils/const.ts';
+// import { fetchLogin } from '../../store/middleware/user-thunk.ts';
 
 function FavoritePage() {
   const dispatch = useAppDispatch();
@@ -20,17 +21,11 @@ function FavoritePage() {
     (state: RootState) => state.user.authorizationStatus
   );
 
-  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
-
   useEffect(() => {
-    if (!isAuth) {
-      navigate('/login');
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavorites());
     }
-  }, [isAuth, navigate]);
-
-  useEffect(() => {
-    dispatch(fetchFavorites());
-  }, [dispatch]);
+  }, [authorizationStatus, dispatch]);
 
   const groupedFavorites = favorites.reduce<Record<string, OffersType[]>>(
     (acc, offer) => {

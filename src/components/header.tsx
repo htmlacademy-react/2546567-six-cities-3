@@ -2,10 +2,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getLayoutState } from '../utils/type';
 import { AppRoute, AuthorizationStatus } from '../utils/const.ts';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/index.ts';
-import { memo } from 'react';
+import { RootState, useAppDispatch } from '../store/index.ts';
+import { memo, useEffect } from 'react';
+import { fetchLogin } from '../store/middleware/user-thunk.ts';
+import { setAuthorizationStatus } from '../store/slices/user-slice.ts';
 
 function Header(): JSX.Element {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { linkClassName, shouldRenderUser } = getLayoutState(
@@ -21,6 +24,13 @@ function Header(): JSX.Element {
   const favoritesCount = allOffers
     ? allOffers.filter((item) => item.isFavorite).length
     : 0;
+
+  // Выполняем запрос при монтировании компонента
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Unknown) {
+      dispatch(fetchLogin());
+    }
+  }, [authorizationStatus, dispatch]);
 
   return (
     <header className="header">
@@ -46,19 +56,25 @@ function Header(): JSX.Element {
                 <li className="header__nav-item user">
                   <a
                     className="header__nav-link header__nav-link--profile"
-                    href="/login"
+                    href={AppRoute.Login}
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     {authorizationStatus === AuthorizationStatus.Auth ? (
                       <>
-                        <span className="header__user-name user__name">
+                        <span
+                          className="header__user-name user__name"
+                          onClick={(evt) => {
+                            evt.preventDefault();
+                            navigate(AppRoute.Favorites);
+                          }}
+                        >
                           {authData?.email || ''}
                         </span>
                         <span
                           className="header__favorite-count"
                           onClick={(evt) => {
                             evt.preventDefault();
-                            navigate('favorite');
+                            navigate(AppRoute.Favorites);
                           }}
                           data-testid="favorites-count"
                         >
@@ -74,9 +90,12 @@ function Header(): JSX.Element {
                   <li className="header__nav-item">
                     <a
                       className="header__nav-link"
-                      href="/"
+                      href={AppRoute.Login}
                       onClick={() => {
                         localStorage.clear();
+                        dispatch(
+                          setAuthorizationStatus(AuthorizationStatus.NoAuth)
+                        );
                       }}
                     >
                       <span className="header__signout">Sign out</span>

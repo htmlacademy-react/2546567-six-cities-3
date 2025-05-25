@@ -1,7 +1,11 @@
+import { useSelector } from 'react-redux';
 import Loading from '../../components/loading';
-import { useAppDispatch } from '../../store';
+import { RootState, useAppDispatch } from '../../store';
 import { changeFavoriteStatus } from '../../store/middleware/cities-thunk';
+import { getRating } from '../../utils/helpers';
 import { CurrentOfferType } from '../../utils/type';
+import { AppRoute, AuthorizationStatus } from '../../utils/const';
+import { useNavigate } from 'react-router-dom';
 
 type OfferDescriptionProps = {
   currentOffer: CurrentOfferType;
@@ -11,6 +15,12 @@ function OfferDescription({
   currentOffer,
 }: OfferDescriptionProps): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const authorizationStatus = useSelector(
+    (state: RootState) => state.user.authorizationStatus
+  );
+
   if (!currentOffer) {
     return <Loading />;
   }
@@ -25,11 +35,15 @@ function OfferDescription({
           } button`}
           type="button"
           onClick={() => {
-            const payload = {
-              offerId: currentOffer.id,
-              status: currentOffer.isFavorite ? 0 : 1,
-            };
-            dispatch(changeFavoriteStatus(payload));
+            if (authorizationStatus === AuthorizationStatus.Auth) {
+              const payload = {
+                offerId: currentOffer.id,
+                status: currentOffer.isFavorite ? 0 : 1,
+              };
+              dispatch(changeFavoriteStatus(payload));
+            } else {
+              navigate(AppRoute.Login);
+            }
           }}
         >
           <svg className="offer__bookmark-icon" width="31" height="33">
@@ -40,10 +54,12 @@ function OfferDescription({
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
-          <span style={{ width: '80%' }}></span>
+          <span style={{ width: getRating(currentOffer.rating) }}></span>
           <span className="visually-hidden">{currentOffer.rating}</span>
         </div>
-        <span className="offer__rating-value rating__value">4.8</span>
+        <span className="offer__rating-value rating__value">
+          {currentOffer.rating.toFixed(1)}
+        </span>
       </div>
       <ul className="offer__features">
         <li className="offer__feature offer__feature--entire">

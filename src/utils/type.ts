@@ -23,7 +23,7 @@ export type OffersType = {
   previewImage: string;
   pictures: string[];
   description: TDescription;
-  premiumMark: boolean;
+  isPremium: boolean;
   title: string;
   isFavorite: boolean;
   city: TCity;
@@ -70,7 +70,7 @@ export const getLayoutState = (pathname: AppRoute) => {
   } else if (pathname === AppRoute.Login) {
     rootClassName = 'page--gray page--login';
     shouldRenderUser = false;
-  } else if (pathname === AppRoute.Favorite) {
+  } else if (pathname === AppRoute.Favorites) {
     shouldRenderFooter = true;
   }
   return { rootClassName, linkClassName, shouldRenderUser, shouldRenderFooter };
