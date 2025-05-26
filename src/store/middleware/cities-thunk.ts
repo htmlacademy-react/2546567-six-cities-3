@@ -103,7 +103,7 @@ export const changeFavoriteStatus = createAsyncThunk(
           status: Number(payload.status),
         }
       );
-      // Вызываем fetchFavorites после успешного изменения статуса
+
       dispatch(fetchFavorites());
       return data;
     } catch (err) {

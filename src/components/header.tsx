@@ -25,7 +25,6 @@ function Header(): JSX.Element {
     ? allOffers.filter((item) => item.isFavorite).length
     : 0;
 
-  // Выполняем запрос при монтировании компонента
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Unknown) {
       dispatch(fetchLogin());

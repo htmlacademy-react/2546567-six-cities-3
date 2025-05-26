@@ -1,5 +1,7 @@
 import { TCity } from '../store/slices/cities-slice';
 
+export const PASSWORD_VALIDATION_PATTERN = '^(?=.*[A-Za-z])(?=.*d).+$';
+
 export enum CitiesEnum {
   Paris = 'Paris',
   Cologne = 'Cologne',

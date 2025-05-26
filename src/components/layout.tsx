@@ -1,8 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { AppRoute } from '../../utils/const';
-import { getLayoutState } from '../../utils/type';
-
-import Header from '../header';
+import MemorizedHeader from './header';
+import { getLayoutState } from '../utils/type';
+import { AppRoute } from '../utils/const';
 
 export default function Layout() {
   const { pathname } = useLocation();
@@ -10,7 +9,7 @@ export default function Layout() {
 
   return (
     <div className={`page${rootClassName}`}>
-      <Header />
+      <MemorizedHeader />
       <Outlet />
     </div>
   );

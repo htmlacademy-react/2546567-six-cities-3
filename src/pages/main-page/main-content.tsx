@@ -2,10 +2,10 @@ import { useSelector } from 'react-redux';
 import '../../styles.css';
 import { RootState } from '../../store';
 import { RequestStatus } from '../../utils/const';
-import Loading from '../../components/loading';
 import CardList from './card-list';
 import MapComponent from '../../components/map-component';
 import LocationListMain from '../../components/location-list-main';
+import { LongCat } from '../../components/LongCat';
 
 function MainContent(): JSX.Element {
   const currentCity = useSelector(
@@ -15,6 +15,11 @@ function MainContent(): JSX.Element {
     (state: RootState) => state.cities.selectedPoint
   );
   const status = useSelector((state: RootState) => state.cities.status);
+
+  if (status === RequestStatus.Loading) {
+    return <LongCat />;
+  }
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -30,8 +35,7 @@ function MainContent(): JSX.Element {
               {currentCity.offers.length > 1 && 's'} to stay in{' '}
               {currentCity.name}
             </b>
-            {status === RequestStatus.Loading && <Loading />}
-            {status !== RequestStatus.Loading && <CardList />}
+            <CardList />
           </section>
           <div className="cities__right-section">
             <MapComponent

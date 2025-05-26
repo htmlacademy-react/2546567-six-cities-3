@@ -7,7 +7,6 @@ import MapComponent from './map-component';
 import { TCity } from '../store/slices/cities-slice.ts';
 import { CitiesEnum } from '../utils/const.ts';
 
-// Мокаем Leaflet и пользовательские хуки
 vi.mock('leaflet', () => ({
   Icon: vi.fn(),
   Marker: vi.fn(() => ({

@@ -7,7 +7,7 @@ const TIMEOUT = 5000;
 function createAPI(): AxiosInstance {
   const api = axios.create({
     baseURL: BACKEND_URL,
-    timeout: TIMEOUT, // Убрано приведение типа
+    timeout: TIMEOUT,
   });
 
   api.interceptors.request.use((config) => {

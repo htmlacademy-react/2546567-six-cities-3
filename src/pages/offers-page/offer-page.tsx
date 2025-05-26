@@ -151,7 +151,7 @@ function OfferPage() {
           </h2>
           <div className="near-places__list places__list">
             {nearbyOffers.map((item) => (
-              <Card key={item.id} offer={item} />
+              <Card key={item.id} offer={item} isNearCard />
             ))}
           </div>
         </section>

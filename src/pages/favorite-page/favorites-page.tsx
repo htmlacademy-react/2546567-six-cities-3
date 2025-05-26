@@ -9,7 +9,6 @@ import { setCurrentCity } from '../../store/slices/cities-slice.ts';
 import Footer from '../../components/footer.tsx';
 import FavoritesEmpty from './favorites-empty.tsx';
 import { AuthorizationStatus, CITIES, CitiesEnum } from '../../utils/const.ts';
-// import { fetchLogin } from '../../store/middleware/user-thunk.ts';
 
 function FavoritePage() {
   const dispatch = useAppDispatch();

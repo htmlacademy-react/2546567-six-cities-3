@@ -5,25 +5,25 @@ import classNames from 'classnames';
 
 type SortProps = {
   active: SortOption;
-  handleSort: (option: SortOption) => void;
+  onSort: (option: SortOption) => void;
 };
 
-function Sort({ active, handleSort }: SortProps): JSX.Element {
+function Sort({ active, onSort }: SortProps): JSX.Element {
   const { isOn, off, toggle } = useBoolean(false);
 
   useEffect(() => {
     if (isOn) {
-      const onEscKeyDown = (evt: KeyboardEvent) => {
+      const handleEscKeyDown = (evt: KeyboardEvent) => {
         if (evt.key === 'Escape') {
           evt.preventDefault();
           off();
         }
       };
 
-      document.addEventListener('keydown', onEscKeyDown);
+      document.addEventListener('keydown', handleEscKeyDown);
 
       return () => {
-        document.removeEventListener('keydown', onEscKeyDown);
+        document.removeEventListener('keydown', handleEscKeyDown);
       };
     }
   }, [isOn, off]);
@@ -51,7 +51,7 @@ function Sort({ active, handleSort }: SortProps): JSX.Element {
               'places__option--active': selectedOption === option,
             })}
             key={option}
-            onClick={() => handleSort(index)}
+            onClick={() => onSort(index)}
             tabIndex={0}
           >
             {option}

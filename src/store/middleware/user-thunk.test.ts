@@ -3,7 +3,6 @@ import { fetchLogin, tryAuth } from '../middleware/user-thunk';
 import { API } from '../../services/api';
 import type { AuthPayload, AuthResponse } from '../slices/user-slice';
 
-// Мокаем API с правильной типизацией
 vi.mock('../../services/api', () => ({
   API: {
     get: vi.fn(),

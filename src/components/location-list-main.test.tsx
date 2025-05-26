@@ -8,7 +8,6 @@ import { CITIES } from '../utils/const';
 
 const mockStore = configureMockStore();
 
-// Исправленный мок для react-redux
 vi.mock('react-redux', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-redux')>();
   return {
@@ -35,12 +34,10 @@ describe('Component: LocationListMain', () => {
       </Provider>
     );
 
-    // Проверка отображения всех городов
     CITIES.forEach((city) => {
       expect(screen.getByText(city.name)).toBeInTheDocument();
     });
 
-    // Проверка активного класса у первого города
     const firstCityLink = screen.getAllByRole('link')[0];
     expect(firstCityLink).toHaveClass('tabs__item--active');
   });

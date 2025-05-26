@@ -19,7 +19,6 @@ import {
 const DEFAULT_CITY =
   CITIES.find((item) => item.name === CitiesEnum.Paris) || CITIES[0];
 
-// тип городов
 export type TCity = {
   name: CitiesEnum;
   location: TLocationCoordinates;
@@ -40,7 +39,6 @@ export type NewComment = {
   rating: number;
 };
 
-//тип состояния
 export interface CitiesState {
   currentCity: TCity;
   allOffers: OffersType[];
@@ -52,7 +50,6 @@ export interface CitiesState {
   favorites: OffersType[];
 }
 
-// изначальное состояние
 export const INITIAL_CITIES_STATE: CitiesState = {
   currentCity: DEFAULT_CITY,
   allOffers: [],
@@ -64,7 +61,6 @@ export const INITIAL_CITIES_STATE: CitiesState = {
   favorites: [],
 };
 
-// хранилище
 export const citiesSlice = createSlice({
   name: 'cities',
   initialState: INITIAL_CITIES_STATE,
@@ -149,22 +145,21 @@ export const citiesSlice = createSlice({
       .addCase(
         changeFavoriteStatus.fulfilled,
         (state, action: PayloadAction<OffersType>) => {
-          state.status = RequestStatus.Success;
           const updatedOffer = action.payload;
 
-          // Обновляем все места, где может находиться офер
-          const updateFn = (item: OffersType) =>
-            item.id === updatedOffer.id ? updatedOffer : item;
+          const updateOffers = (offers: OffersType[]) =>
+            offers.map((offer) =>
+              offer.id === updatedOffer.id
+                ? { ...offer, isFavorite: updatedOffer.isFavorite }
+                : offer
+            );
 
-          state.currentCity.offers = state.currentCity.offers.map(updateFn);
-          state.allOffers = state.allOffers.map(updateFn);
-          state.nearbyOffers = state.nearbyOffers.map(updateFn);
+          state.currentCity.offers = updateOffers(state.currentCity.offers);
+          state.allOffers = updateOffers(state.allOffers);
+          state.nearbyOffers = updateOffers(state.nearbyOffers);
 
           if (state.currentOffer?.id === updatedOffer.id) {
-            state.currentOffer = {
-              ...state.currentOffer,
-              isFavorite: updatedOffer.isFavorite,
-            };
+            state.currentOffer.isFavorite = updatedOffer.isFavorite;
           }
         }
       )

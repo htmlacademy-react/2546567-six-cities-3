@@ -40,7 +40,6 @@ export const INITIAL_USER_STATE: UserState = {
   error: null,
 };
 
-// хранилище
 export const userSlice = createSlice({
   name: 'user',
   initialState: INITIAL_USER_STATE,
