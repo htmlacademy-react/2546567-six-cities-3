@@ -6,13 +6,13 @@ import MainPage from '../pages/main-page/main-page';
 import { AppRoute, AuthorizationStatus } from '../utils/const.ts';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import PrivateRoute from './private-route';
-import Layout from './layout/layout';
 import OfferPage from '../pages/offers-page/offer-page';
 import { useEffect } from 'react';
 import { RootState, useAppDispatch } from '../store/index.ts';
 import { fetchLogin } from '../store/middleware/user-thunk.ts';
 import { useSelector } from 'react-redux';
-import Loading from './loading.tsx';
+import { LongCat } from './LongCat.tsx';
+import Layout from './layout.tsx';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -21,7 +21,6 @@ function App() {
     (state: RootState) => state.user.authorizationStatus
   );
 
-  // Выполняем запрос при монтировании компонента
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Unknown) {
       dispatch(fetchLogin());
@@ -29,7 +28,7 @@ function App() {
   }, [authorizationStatus, dispatch]);
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
-    return <Loading />;
+    return <LongCat />;
   }
 
   return (

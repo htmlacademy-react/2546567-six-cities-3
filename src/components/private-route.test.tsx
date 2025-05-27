@@ -39,7 +39,6 @@ describe('Component: PrivateRoute', () => {
   it('should redirect to login when not authorized', () => {
     renderWithAuthStatus(AuthorizationStatus.NoAuth);
 
-    // Проверяем что произошёл редирект
     expect(screen.getByText('Login page')).toBeInTheDocument();
     expect(screen.queryByText('Private content')).toBeNull();
   });

@@ -3,7 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store/index.ts';
 import { AuthPayload } from '../../store/slices/user-slice.ts';
 import { useSelector } from 'react-redux';
-import { AuthorizationStatus, CITIES } from '../../utils/const.ts';
+import {
+  AuthorizationStatus,
+  CITIES,
+  PASSWORD_VALIDATION_PATTERN,
+} from '../../utils/const.ts';
 import { tryAuth } from '../../store/middleware/user-thunk.ts';
 import { setCurrentCity, TCity } from '../../store/slices/cities-slice.ts';
 
@@ -98,7 +102,7 @@ function LoginPage() {
                   required
                   value={authPayload.password}
                   onChange={handleChangePassword}
-                  pattern="^(?=.*[A-Za-z])(?=.*\d).+$"
+                  pattern={PASSWORD_VALIDATION_PATTERN}
                   title="Password must contain at least one letter and one digit"
                 />
               </div>

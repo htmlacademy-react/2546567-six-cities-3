@@ -4,7 +4,6 @@ import OfferReviewForm from './offer-review-form';
 import { Provider } from 'react-redux';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 
-// Мокаем Redux store и асинхронные действия
 const mockStore = configureMockStore();
 vi.mock('../store/index.ts', () => ({
   useAppDispatch: () => vi.fn(),

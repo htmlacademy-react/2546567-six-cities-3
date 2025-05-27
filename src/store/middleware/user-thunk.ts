@@ -20,8 +20,7 @@ export const tryAuth = createAsyncThunk(
   async (payload: AuthPayload, { rejectWithValue }) => {
     try {
       const { data } = await API.post<AuthResponse>('/login', payload);
-      // Сохраняем токен после успешной авторизации
-      saveToken(data.token); // Добавьте эту функцию в модуль token.ts
+      saveToken(data.token);
       return data;
     } catch (err) {
       return rejectWithValue('Failed to try auth');

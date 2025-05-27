@@ -4,7 +4,6 @@ import { vi } from 'vitest';
 import App from './app';
 import { AppRoute } from '../utils/const';
 
-// Мокаем все зависимости связанные с Redux
 vi.mock('../store', () => ({
   useAppDispatch: () => vi.fn(),
 }));
@@ -13,7 +12,6 @@ vi.mock('react-redux', () => ({
   useSelector: vi.fn(),
 }));
 
-// Мокаем страницы
 vi.mock('../pages/main-page/main-page', () => ({
   default: () => <div>Main page</div>,
 }));
@@ -34,7 +32,6 @@ vi.mock('../pages/not-found-page/not-found-page', () => ({
   default: () => <div>Not Found page</div>,
 }));
 
-// Мокаем запросы
 vi.mock('../store/middleware/user-thunk', () => ({
   fetchLogin: vi.fn(),
 }));

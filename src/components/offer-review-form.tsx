@@ -30,7 +30,6 @@ function OfferReviewForm({ id }: OfferReviewProps): JSX.Element {
     (evt: React.FormEvent) => {
       evt.preventDefault();
 
-      // Проверяем валидность формы перед отправкой
       if (
         review.review.length < 50 ||
         review.rating === 0 ||
@@ -50,7 +49,6 @@ function OfferReviewForm({ id }: OfferReviewProps): JSX.Element {
       dispatch(sendComment(comment))
         .unwrap()
         .then(() => {
-          // Очищаем форму после успешной отправки
           setReview({ rating: 0, review: '' });
         })
         .catch(() => {

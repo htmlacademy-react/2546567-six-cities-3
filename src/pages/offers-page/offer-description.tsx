@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
-import Loading from '../../components/loading';
 import { RootState, useAppDispatch } from '../../store';
 import { changeFavoriteStatus } from '../../store/middleware/cities-thunk';
 import { getRating } from '../../utils/helpers';
 import { CurrentOfferType } from '../../utils/type';
 import { AppRoute, AuthorizationStatus } from '../../utils/const';
 import { useNavigate } from 'react-router-dom';
+import { LongCat } from '../../components/LongCat';
 
 type OfferDescriptionProps = {
   currentOffer: CurrentOfferType;
@@ -22,7 +22,7 @@ function OfferDescription({
   );
 
   if (!currentOffer) {
-    return <Loading />;
+    return <LongCat />;
   }
 
   return (

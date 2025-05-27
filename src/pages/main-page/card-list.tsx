@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import Card from '../../components/card';
 
 import { SortOption } from '../../utils/const.ts';
@@ -25,13 +25,13 @@ function CardList(): JSX.Element {
     }
   }, [offers, activeSort]);
 
-  const onSortChange = (option: SortOption) => {
+  const handleSort = (option: SortOption) => {
     setActiveSort(option);
   };
 
   return (
     <>
-      <Sort active={activeSort} handleSort={onSortChange} />
+      <Sort active={activeSort} onSort={handleSort} />
       <div className="cities__places-list places__list tabs__content">
         {sortedOffers.map((card) => (
           <Card offer={card} key={card.id} />
@@ -40,4 +40,6 @@ function CardList(): JSX.Element {
     </>
   );
 }
-export default CardList;
+
+const MemorizedCardList = memo(CardList);
+export default MemorizedCardList;
