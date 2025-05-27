@@ -1,11 +1,11 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { getLayoutState } from '../utils/type';
 import { AppRoute, AuthorizationStatus } from '../utils/const.ts';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../store/index.ts';
 import { memo, useEffect } from 'react';
 import { fetchLogin } from '../store/middleware/user-thunk.ts';
 import { setAuthorizationStatus } from '../store/slices/user-slice.ts';
+import { getLayoutState } from '../utils/helpers.tsx';
 
 function Header(): JSX.Element {
   const dispatch = useAppDispatch();
