@@ -3,11 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../store/index.ts';
 import { AuthPayload } from '../../store/slices/user-slice.ts';
 import { useSelector } from 'react-redux';
-import {
-  AuthorizationStatus,
-  CITIES,
-  PASSWORD_VALIDATION_PATTERN,
-} from '../../utils/const.ts';
+import { AuthorizationStatus, CITIES } from '../../utils/const.ts';
 import { tryAuth } from '../../store/middleware/user-thunk.ts';
 import { setCurrentCity, TCity } from '../../store/slices/cities-slice.ts';
 
@@ -18,6 +14,7 @@ function LoginPage() {
     email: '',
     password: '',
   });
+  const [passwordError, setPasswordError] = useState<string | null>(null);
 
   const authorizationStatus = useSelector(
     (state: RootState) => state.user.authorizationStatus
@@ -33,8 +30,32 @@ function LoginPage() {
     }
   }, [authorizationStatus, navigate]);
 
+  const validatePassword = (password: string): boolean => {
+    let hasLetter = false;
+    let hasDigit = false;
+
+    for (const char of password) {
+      if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+        hasLetter = true;
+      } else if (char >= '0' && char <= '9') {
+        hasDigit = true;
+      }
+    }
+
+    return hasLetter && hasDigit;
+  };
+
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+
+    if (!validatePassword(authPayload.password)) {
+      setPasswordError(
+        'Пароль должен содержать минимум одну латинскую букву и одну цифру'
+      );
+      return;
+    }
+
+    setPasswordError(null);
     dispatch(tryAuth(authPayload));
   };
 
@@ -48,11 +69,18 @@ function LoginPage() {
       ...authPayload,
       email: e.target.value,
     });
-  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
+
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
     setAuthPayload({
       ...authPayload,
-      password: e.target.value,
+      password: newPassword,
     });
+
+    if (passwordError) {
+      setPasswordError(null);
+    }
+  };
 
   return (
     <div className="page page--gray page--login">
@@ -102,9 +130,15 @@ function LoginPage() {
                   required
                   value={authPayload.password}
                   onChange={handleChangePassword}
-                  pattern={PASSWORD_VALIDATION_PATTERN}
-                  title="Password must contain at least one letter and one digit"
                 />
+                {passwordError && (
+                  <div
+                    className="login__error-message"
+                    style={{ color: 'red', fontSize: '12px' }}
+                  >
+                    {passwordError}
+                  </div>
+                )}
               </div>
               <button
                 className="login__submit form__submit button"
